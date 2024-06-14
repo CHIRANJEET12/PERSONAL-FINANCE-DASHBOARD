@@ -1,15 +1,26 @@
-const express = require("express");
-const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose")
+import express from "express";
+import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 const jwtpassword = "12345";
-const bodyParser = require("body-parser");
+import bodyParser from "body-parser";
+// user.js
+export const User = {...}; // Your User model definition here
+
+
+// main file
+import { User } from './models/user.js';
+
+
+
 
 const app = express();
 const port = 3000;
 
 // Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.static('Public'));
+app.use(bodyParser.urlencoded({extended:true}));
+
 
 // Set the view engine to ejs
 app.set("view engine", "ejs");
@@ -22,7 +33,7 @@ mongoose.connect("mongodb://localhost:27017/bank")
 })
 
 // Routes
-app.use("", require("./routes/user"));
+app.use("", User);
 
 // Start the server
 app.listen(port, () => {
