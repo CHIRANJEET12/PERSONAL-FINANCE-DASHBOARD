@@ -7,5 +7,15 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.1",
     "uuid": "^10.0.0"
-  }
+  },
+  "name": "finance_project",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
