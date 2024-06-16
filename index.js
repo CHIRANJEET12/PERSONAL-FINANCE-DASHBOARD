@@ -1,8 +1,8 @@
-import express from "express";
-import jwt from "jsonwebtoken";
-import mongoose from "mongoose";
+const express = require("express");
+const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 const jwtpassword = "12345";
-import bodyParser from "body-parser";
+const bodyParser = require("body-parser");
 
 
 
