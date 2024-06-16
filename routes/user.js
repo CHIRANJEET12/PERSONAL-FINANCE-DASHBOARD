@@ -81,5 +81,24 @@ router.post("/pin", async (req, res) => {
         res.status(500).send("Error in pin-validation. Please try again later.");
     }
 });
+// router.get("/entre")
+
+router.post("/entre", async (req, res) => {
+    const { pin } = req.body;
+    try {
+        const pinvalid = await Pin.findOne({ pin });
+
+        if (!pinvalid) {
+            return res.status(404).send("Incorrect Pin");
+        } else {
+            console.log("Valid");
+            return res.status(200).send("Pin is valid");
+        }
+    } catch (error) {
+        console.error("Error in pin-validation:", error);
+        return res.status(500).send("Error in pin-validation. Please try again later.");
+    }
+});
+
 
 module.exports = router;
