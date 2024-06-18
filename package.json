@@ -9,7 +9,7 @@
     "uuid": "^10.0.0"
   },
   "name": "finance_project",
-  "type": "module",
+  "type": "commonjs",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -17,5 +17,6 @@
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {},
   "description": ""
 }
