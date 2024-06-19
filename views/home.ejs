@@ -4,11 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>homepage</title>
+    <title>Homepage</title>
     <link rel="stylesheet" href="/Finance_Project/Public/views/styles/style2.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
+        <style>
+            body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        #userDetails {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e9ecef;
+            border-radius: 8px;
+        }
+
+        #userDetails h3 {
+            font-weight: bold;
+        }
+
+        #userEmail,
+        #userName {
+            font-size: 1.1rem;
+        }
+        </style>
+
+
+    </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -27,21 +75,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
-                    <!-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">Dropdown</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Login</a>
                     </li>
                 </ul>
-            
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
@@ -50,20 +87,19 @@
         </div>
     </nav>
 
-    <form action="/entre" method="POST">
+    <form id="mpinForm" action="/entre" method="POST">
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Enter the correct pin</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="pin">
+            <input type="password" class="form-control" id="exampleInputPassword1" name="pin" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>
