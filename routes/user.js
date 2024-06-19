@@ -8,6 +8,7 @@ const Pin = require("../models/pin");
 
 const jwtpassword = "12345";
 
+
 router.get("/", (req, res) => {
     res.render("home");
 });
@@ -23,6 +24,10 @@ router.get("/signup", (req, res) => {
 router.get("/pin", (req, res) => {
     res.render("pin");
 });
+
+router.get('/dashboard',(req,res)=>{
+    res.render("dashboard.ejs");
+})
 
 router.post("/signup", async (req, res) => {
     let cardNumber = '';
@@ -82,7 +87,7 @@ router.post("/pin", async (req, res) => {
         const newPin = new Pin({ email, pin });
         await newPin.save();
 
-        res.redirect("/");
+        res.redirect("/dashboard");
     } catch (error) {
         console.error("Error in pin-validation:", error);
         res.status(500).send("Error in pin-validation. Please try again later.");

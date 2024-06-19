@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash Board</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="/Finance_Project/Public/styles/dashboardStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+<aside>
+<div class="toggle">
+<h2>FinTrack</h2>
+<a href="#" class="close" id="close-btn">
+  <span class="material-symbols-outlined">
+    close
+    </span>
+</a>
+</div>
+<div class="sidebar">
+  <a href="#" class="active">
+    <span class="material-symbols-outlined">
+      dashboard
+      </span>
+  <h3>Dashboard</h3>
+  </a>
+  <a href="/" class="home">
+    <span class="material-symbols-outlined">
+    home
+    </span>
+    <h3>Home</h3>
+  </a>
+  <a href="#" class="adAc">
+    <span class="material-symbols-outlined adAcSpan">
+      person_add
+      </span>
+     <h3>Add Account</h3>
+  </a>
+  <a href="#" class="settings">
+    <span class="material-symbols-outlined">
+      settings
+      </span>
+      <h3>settings</h3>
+  </a>  
+    <a href="#">
+      <span class="material-symbols-outlined">
+        logout
+        </span> 
+        <h3>Logout</h3>
+    </a>
+</div>  
+</aside>
+
+<!-- MAIN CONTENT -->
+ <main>
+  <div class="all-finDtls">
+    <div class="card">
+      <div class="card-header">
+        <h1> FinBank w</h1>
+        <img class="logo" src="/0b087c9ad51a5c0a3afd57a05ebe4bee-removebg-preview.png" alt="Visa Logo">
+      </div>
+      <div class="card-number">
+        1234 5678 9110 6678
+        <!-- <%= cardNumber %> -->
+      </div>
+      <div class="card-footer">
+        <span>Cardholder name</span>
+        <h2>Messi<!--<%= cardHolderName %>--></h2>
+        <span class="exDate">Expiry date</span>
+        <h2 class="exDateDtls">08/2028<!--<%= expiryDate %>--></h2>
+      </div>
+    </div>
+    <div class="balance">
+      <h1>Balance</h1>
+      <h2> Rs.12134.66<!-- <%= users.balance %> --></h2>
+      </div> 
+  <div class="share">
+    <div class="share-to-friends">
+      <p>Share to friends:</p>
+      <div class="social-icons">
+        <a href="https://api.whatsapp.com/send?text=your-website-link" target="_blank">
+          <i class="fa fa-whatsapp" style="font-size:50px"></i> 
+        </a>
+        <a href="https://www.linkedin.com/shareArticle?url=your-website-link" target="_blank">
+          <i class="fa fa-linkedin-square" style="font-size:50px"></i>
+        </a>
+        <a href="https://twitter.com/intent/tweet?url=your-website-link&text=Check%20this%20out!" target="_blank">
+          <i class="fa fa-twitter" style="font-size:50px"></i>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank">
+          <i class="fa fa-instagram" style="font-size:50px"></i>
+        </a>
+      </div>
+    </div>
+    
+  </div>    
+  </div>
+  
+
+ </main>
+</div>
+</body>
+</html>
