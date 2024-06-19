@@ -8,7 +8,6 @@ const Pin = require("../models/pin");
 
 const jwtpassword = "12345";
 
-
 router.get("/", (req, res) => {
     res.render("home");
 });
@@ -25,27 +24,28 @@ router.get("/pin", (req, res) => {
     res.render("pin");
 });
 
-router.get('/dashboard',(req,res)=>{
-    res.render("dashboard.ejs");
-})
+router.get('/dashboard', (req, res) => {
+    res.render("dashboard");
+});
 
 router.post("/signup", async (req, res) => {
     let cardNumber = '';
     for (let i = 0; i < 16; i++) {
-      if (i > 0 && i % 4 === 0) {
-        cardNumber += ' '; // Adds a space after every 4 digits
-      }
-      cardNumber += Math.floor(Math.random() * 10); // Generates a single random digit and adds it to the card number
+        if (i > 0 && i % 4 === 0) {
+            cardNumber += ' '; // Adds a space after every 4 digits
+        }
+        cardNumber += Math.floor(Math.random() * 10); // Generates a single random digit and adds it to the card number
     }
+    console.log(cardNumber)
     const randomBalance = Math.floor(Math.random() * 100000);
     const { name, email, password } = req.body;
 
     try {
         const uniqueId = uuidv4();
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ userId: uniqueId, name, email, password: hashedPassword,cardnumber: cardNumber, balance: randomBalance });
+        const newUser = new User({ userId: uniqueId, name, email, password: hashedPassword, cardnumber: cardNumber, balance: randomBalance });
         await newUser.save();
-        console.log(randomBalance)
+        console.log(randomBalance);
         res.redirect("/login");
     } catch (error) {
         console.error("Error saving user:", error);
@@ -76,7 +76,8 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/pin", async (req, res) => {
-    const { email, pin } = req.body;
+    const { email, pin1, pin2, pin3, pin4, pin5, pin6 } = req.body;
+    const pin = `${pin1}${pin2}${pin3}${pin4}${pin5}${pin6}`;
 
     try {
         const user = await User.findOne({ email });
@@ -93,7 +94,6 @@ router.post("/pin", async (req, res) => {
         res.status(500).send("Error in pin-validation. Please try again later.");
     }
 });
-// router.get("/entre")
 
 router.post("/entre", async (req, res) => {
     const { pin } = req.body;
@@ -105,13 +105,11 @@ router.post("/entre", async (req, res) => {
         } else {
             console.log("Valid");
             res.redirect("/dashboard");
-            return res.status(200).send("Pin is valid");
         }
     } catch (error) {
         console.error("Error in pin-validation:", error);
         return res.status(500).send("Error in pin-validation. Please try again later.");
     }
 });
-
 
 module.exports = router;
