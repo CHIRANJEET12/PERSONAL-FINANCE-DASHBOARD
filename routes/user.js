@@ -87,7 +87,7 @@ router.post("/pin", async (req, res) => {
         const newPin = new Pin({ email, pin });
         await newPin.save();
 
-        res.redirect("/dashboard");
+        res.redirect("/");
     } catch (error) {
         console.error("Error in pin-validation:", error);
         res.status(500).send("Error in pin-validation. Please try again later.");
@@ -104,6 +104,7 @@ router.post("/entre", async (req, res) => {
             return res.status(404).send("Incorrect Pin");
         } else {
             console.log("Valid");
+            res.redirect("/dashboard");
             return res.status(200).send("Pin is valid");
         }
     } catch (error) {
