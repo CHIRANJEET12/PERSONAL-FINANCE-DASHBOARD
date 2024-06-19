@@ -1,6 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose")
+const cookieParser = require("cookie-parser");
 const jwtpassword = "12345";
 const path = require("path")
 const bodyParser = require("body-parser");
@@ -11,6 +12,7 @@ const port = 3000;
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // Set the view engine to ejs
 app.set("view engine", "ejs");
