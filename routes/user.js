@@ -8,6 +8,23 @@ const Pin = require("../models/pin");
 
 const jwtpassword = "12345";
 
+// Middleware to protect routes
+function authenticateToken(req, res, next) {
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.redirect("/login");
+    }
+
+    jwt.verify(token, jwtpassword, (err, user) => {
+        if (err) {
+            return res.redirect("/login");
+        }
+        req.user = user;
+        next();
+    });
+}
+
 router.get("/", (req, res) => {
     res.render("home");
 });
@@ -20,13 +37,29 @@ router.get("/signup", (req, res) => {
     res.render("signup");
 });
 
-router.get("/pin", (req, res) => {
+router.get("/pin", authenticateToken, (req, res) => {
     res.render("pin");
 });
 
-router.get('/dashboard', (req, res) => {
-    res.render("dashboard");
+router.get('/dashboard', authenticateToken, async (req, res) => {
+    try {
+        const user = await User.findOne({ userId: req.user.userId });
+
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+
+        res.render("dashboard", {
+            cardnumber: user.cardnumber,
+            name: user.name,
+            balance: user.balance
+        });
+    } catch (error) {
+        console.error("Error fetching user details:", error);
+        res.status(500).send("Error fetching user details. Please try again later.");
+    }
 });
+
 
 router.post("/signup", async (req, res) => {
     let cardNumber = '';
@@ -64,8 +97,9 @@ router.post("/login", async (req, res) => {
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
-            const token = jwt.sign({ userId: user.userId, email: user.email }, jwtpassword);
-            res.render("pin");
+            const token = jwt.sign({ userId: user.userId, email: user.email }, jwtpassword, { expiresIn: '1h' });
+            res.cookie('token', token, { httpOnly: true });
+            res.redirect("/pin");
         } else {
             res.status(401).send("Invalid credentials");
         }
@@ -75,7 +109,7 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.post("/pin", async (req, res) => {
+router.post("/pin", authenticateToken, async (req, res) => {
     const { email, pin1, pin2, pin3, pin4, pin5, pin6 } = req.body;
     const pin = `${pin1}${pin2}${pin3}${pin4}${pin5}${pin6}`;
 
@@ -95,7 +129,7 @@ router.post("/pin", async (req, res) => {
     }
 });
 
-router.post("/entre", async (req, res) => {
+router.post("/entre", authenticateToken, async (req, res) => {
     const { pin } = req.body;
     try {
         const pinvalid = await Pin.findOne({ pin });
