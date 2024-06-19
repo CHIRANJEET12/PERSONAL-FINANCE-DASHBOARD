@@ -57,16 +57,21 @@
           <label for="pin" class="form-label">Enter PIN</label>
           <input type="password" class="form-control" id="pin" name="pin" placeholder="do not share" required>
         </div> -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
         <div class="pin-boxes" >
-          <input type="password" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" autofocus autocomplete="off" />
-          <input type="password" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-          <input type="password" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-          <input type="password" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-          <input type="password" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-          <input type="password" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+          <input type="password" name="pin1" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" autofocus autocomplete="off" />
+          <input type="password" name="pin2" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+          <input type="password" name="pin3" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+          <input type="password" name="pin4" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+          <input type="password" name="pin5" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+          <input type="password" name="pin6" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
           <!-- Add more input boxes as needed -->
         </div>
-       </form>
+       <!-- </form> -->
         <button type="submit" class="btn btn-primary mpin">Generate New MPIN</button>
     </form>
   </div>
