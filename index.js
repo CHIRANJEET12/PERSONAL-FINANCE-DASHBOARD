@@ -28,6 +28,8 @@ mongoose.connect("mongodb://localhost:27017/bank")
 // Routes
 app.use("", require("./routes/user"));
 
+
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
