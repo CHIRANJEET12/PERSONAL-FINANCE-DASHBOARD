@@ -5,6 +5,9 @@ const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require('uuid');
 const User = require("../models/user");
 const Pin = require("../models/pin");
+const multer = require("multer");
+const path = require('path');
+const fs = require("fs");
 
 const jwtpassword = "12345";
 
@@ -40,6 +43,9 @@ router.get("/signup", (req, res) => {
 router.get("/pin", authenticateToken, (req, res) => {
     res.render("pin");
 });
+router.get("/balance",(req,res)=>{
+    res.render("balance")
+})
 
 router.get('/dashboard', authenticateToken, async (req, res) => {
     try {
@@ -60,16 +66,15 @@ router.get('/dashboard', authenticateToken, async (req, res) => {
     }
 });
 
-
 router.post("/signup", async (req, res) => {
     let cardNumber = '';
     for (let i = 0; i < 16; i++) {
         if (i > 0 && i % 4 === 0) {
-            cardNumber += ' '; // Adds a space after every 4 digits
+            cardNumber += ' ';
         }
-        cardNumber += Math.floor(Math.random() * 10); // Generates a single random digit and adds it to the card number
+        cardNumber += Math.floor(Math.random() * 10);
     }
-    console.log(cardNumber)
+    console.log(cardNumber);
     const randomBalance = Math.floor(Math.random() * 100000);
     const { name, email, password } = req.body;
 
@@ -109,6 +114,27 @@ router.post("/login", async (req, res) => {
     }
 });
 
+router.post("/logout", (req, res) => {
+    res.clearCookie('token');
+    res.redirect('/');
+});
+
+router.post("/balance", authenticateToken, async (req, res) => {
+    const { balance } = req.body;
+    const userId = req.user.userId;
+
+    try {
+        await User.updateOne(
+            { userId: userId },
+            { $set: { balance: balance } }
+        );
+        res.redirect("/dashboard");
+    } catch (error) {
+        console.error("Error in balancing:", error);
+        res.status(500).send("Error in balancing");
+    }
+});
+
 router.post("/pin", authenticateToken, async (req, res) => {
     const { email, pin1, pin2, pin3, pin4, pin5, pin6 } = req.body;
     const pin = `${pin1}${pin2}${pin3}${pin4}${pin5}${pin6}`;
@@ -122,7 +148,7 @@ router.post("/pin", authenticateToken, async (req, res) => {
         const newPin = new Pin({ email, pin });
         await newPin.save();
 
-        res.redirect("/");
+        res.render("balance");
     } catch (error) {
         console.error("Error in pin-validation:", error);
         res.status(500).send("Error in pin-validation. Please try again later.");
