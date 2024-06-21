@@ -63,7 +63,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h1>FinBank</h1>
-                        <img class="logo" src="/styles/0b087c9ad51a5c0a3afd57a05ebe4bee-removebg-preview.png" alt="Visa Logo">
+                        <img class="logo" src="/styles/0b087c9ad51a5c0a3afd57a05ebe4bee-removebg-preview.png"
+                            alt="Visa Logo">
                     </div>
                     <div class="card-number">
                         <%= cardnumber %>
@@ -105,108 +106,94 @@
             </div>
             <div class="expense-tracker">
                 <h1 class="heading">Track Your Expenses</h1>
-                <ul class="expenses-container" id="expensesContainer">
-                </ul>
-                <!-- Placeholder for No Cards Message -->
-            <!-- <p id="no-cards-msg">No cards are present. To add expense, click on the add icon.</p> -->
-              <div class="addIcon">
-            <span id="add-expense" class="material-symbols-outlined plusIcon">
-            add
-            </span>
-            </div>
+                <ul class="expenses-container" id="expensesContainer"></ul>
+                <a href="/expence">expence</a>
+
+                <div class="addIcon">
+                    <span id="add-expense" class="material-symbols-outlined plusIcon">add</span>
+                </div>
             </div>
             
+
             <div class="goals">
-              <h1 class="goalHeading"> Dream Big Save Now</h1>
-            <ul id="goal-items">
-            </ul>
-            <div class="addIcon">
-            <span id="add-goal" class="material-symbols-outlined plusIcon">
-            add
-            </span>
+                <h1 class="goalHeading">Dream Big Save Now</h1>
+                <ul id="goal-items"></ul>
+                <div class="addIcon">
+                    <span id="add-goal" class="material-symbols-outlined plusIcon">add</span>
+                </div>
             </div>
-            </div>            
-        </main>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var addButton = document.getElementById('add-expense');
-        var goalButton = document.getElementById('add-goal');
-        
-        addButton.addEventListener('click', function() {
-        var container = document.getElementById('expensesContainer');
-        var noCards = document.getElementById('no-cards-msg');
-        
-        // If 'no-cards-msg' message exists, remove it
-        if (noCards) {
-        noCards.remove();
-        }
-        
-        var card = document.createElement('li');
-        card.className = 'expenseCard';
-        var date = new Date().toISOString().split('T')[0];
-        card.innerHTML = `
-        <div class="redIcon"></div>
-        <input id="expense-input" type="text" placeholder="Enter expense" autofocus autocomplete="off"/>
-        <p>Date: ${date}</p>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var addButton = document.getElementById('add-expense');
+                    var goalButton = document.getElementById('add-goal');
+
+                    addButton.addEventListener('click', function () {
+                        var container = document.getElementById('expensesContainer');
+                        var noCards = document.getElementById('no-cards-msg');
+
+                        if (noCards) {
+                            noCards.remove();
+                        }
+
+                        var card = document.createElement('li');
+                        card.className = 'expenseCard';
+                        var date = new Date().toISOString().split('T')[0];
+                        card.innerHTML = `
+                        <form action="/exp" method="POST">
+                            
+    <div class="redIcon"></div>
+    <input name="money" type="number" placeholder="Enter expense" required autofocus autocomplete="off"/>
+    <input name="desc" type="text" placeholder="Enter description" required autocomplete="off"/>
+    <button type="submit">Save</button>
+</form>
+     <p>Date: ${date}</p>
         <p>Time: ${new Date().toLocaleTimeString()}</p>
-        `;
-        container.appendChild(card);
-        });
-        
-        goalButton.addEventListener('click', function() {
-        var container = document.getElementById('goal-items');
-        var nogoalCards = document.getElementById('no-goal-cards-msg');
-        
-        // If 'no-cards-msg' message exists, remove it
-        if (nogoalCards) {
-        nogoalCards.remove();
-        }
-        
-        var card = document.createElement('li');
-        card.className = 'goalCard';
-        var date = new Date().toISOString().split('T')[0];
-        card.innerHTML = `
-        <input type="range" class="budgetProgressBar" id="budgetSlider" min="0" max="10000" >
-                <input type="number" id="userBudget" placeholder="Enter Budget" min="0">
-                <input type="number" id="userSavings" placeholder="Enter Savings" min="0">
-                <div class="slider-value"><span id="sliderValue"></span></div>
-        <p class="goal-date">Date: ${date}</p>
-        `;
-        container.appendChild(card);
-        });
-        
-        // Check if there are any cards when the app loads
-        window.onload = function() {
-        var expenseContainer = document.getElementById('expensesContainer');
-        var goalContainer = document.getElementById('goal-items');
-        
-        if (expenseContainer.children.length === 0) {
-        var noCardsMsg = document.createElement('p');
-        noCardsMsg.id = 'no-cards-msg';
-        noCardsMsg.textContent = 'No cards are present. To add an expense, click on the add icon.';
-        expenseContainer.appendChild(noCardsMsg);
-        }
-        
-        if (goalContainer.children.length === 0) {
-        var nogoalCardsMsg = document.createElement('p');
-        nogoalCardsMsg.id = 'no-goal-cards-msg';
-        nogoalCardsMsg.innerHTML = `“If you’re saving, you’re succeeding.” - Steve Burkholder.<br>Click on the '+' icon to open the door to a better future.`;
-        goalContainer.appendChild(nogoalCardsMsg);
-        }
-        };
-        
-        document.getElementById('expense-input').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-        // Code to save the expense goes here
-        var expense = this.value;
-        // Add code to handle saving the expense
-        }
-        });
-        });
-        
-        
-        </script>    
+`;
+                        container.appendChild(card);
+                    });
+
+                    goalButton.addEventListener('click', function () {
+                        var container = document.getElementById('goal-items');
+                        var nogoalCards = document.getElementById('no-goal-cards-msg');
+
+                        if (nogoalCards) {
+                            nogoalCards.remove();
+                        }
+
+                        var card = document.createElement('li');
+                        card.className = 'goalCard';
+                        var date = new Date().toISOString().split('T')[0];
+                        card.innerHTML = `
+                        <input type="range" class="budgetProgressBar" id="budgetSlider" min="0" max="10000">
+                        <input type="number" id="userBudget" placeholder="Enter Budget" min="0">
+                        <input type="number" id="userSavings" placeholder="Enter Savings" min="0">
+                        <div class="slider-value"><span id="sliderValue"></span></div>
+                        <p class="goal-date">Date: ${date}</p>`;
+                        container.appendChild(card);
+                    });
+
+                    window.onload = function () {
+                        var expenseContainer = document.getElementById('expensesContainer');
+                        var goalContainer = document.getElementById('goal-items');
+
+                        if (expenseContainer.children.length === 0) {
+                            var noCardsMsg = document.createElement('p');
+                            noCardsMsg.id = 'no-cards-msg';
+                            noCardsMsg.textContent = 'No cards are present. To add an expense, click on the add icon.';
+                            expenseContainer.appendChild(noCardsMsg);
+                        }
+
+                        if (goalContainer.children.length === 0) {
+                            var nogoalCardsMsg = document.createElement('p');
+                            nogoalCardsMsg.id = 'no-goal-cards-msg';
+                            nogoalCardsMsg.innerHTML = `“If you’re saving, you’re succeeding.” - Steve Burkholder.<br>Click on the '+' icon to open the door to a better future.`;
+                            goalContainer.appendChild(nogoalCardsMsg);
+                        }
+                    };
+                });
+            </script>
+
 </body>
 
 </html>
