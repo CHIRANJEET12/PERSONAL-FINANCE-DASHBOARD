@@ -185,10 +185,32 @@ aside .sidebar a span{
     top: 13px;
 }
 
-aside .sidebar a:last-child{
+form.lastChild{
+    display: flex;
     position: absolute;
     bottom: 2rem;
     width: 100%;
+}
+
+form.lastChild button{
+    display: flex;
+    color: var(--color-info-dark);
+    height: 3rem;
+    margin-left: 1rem;
+    transition: all 0.3s ease;
+}
+
+form.lastChild span{
+    font-size: 1.6rem;
+    line-height: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    top: 13px;
+}
+
+form.lastChild button:hover{
+    margin-left: 0.5rem; 
+    color: var(--color-primary);   
 }
 
 aside .sidebar a.active{
@@ -257,7 +279,7 @@ main .all-finDtls{
 
 .card {
     width: 400px;
-    height: 30vh;
+    height: 40vh;
     background: linear-gradient(45deg, orange, pink);
     border-radius: 15px;
     padding: 20px;
@@ -306,6 +328,7 @@ left: 240px;
     color: white;
     box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
     text-align: center;
+    height: 40vh;
 }
 
 .balance:hover{
@@ -324,6 +347,7 @@ padding: 20px;
 color: white; 
 box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
 text-align: center;
+width: 20vw;
 }
 
 main .share p{
@@ -336,9 +360,202 @@ main .share i{
     color: #fff;
     position: relative;
     top: 50px;
-    margin-left: 10px;
+    margin-left: 5px;
 } 
 
 main .share:hover{
 box-shadow: none;
 }
+
+
+main .expense-tracker{
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    /* display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; */
+    gap: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+main .expense-tracker:hover{
+    box-shadow: none;
+}
+
+main .expense-tracker .heading{
+    text-align: center;
+}
+
+main .expense-tracker p{
+    text-align: center;
+}
+
+main .expense-tracker div:last-child{
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    background-color: #333;
+    border-radius:100% ;
+    position: relative;
+    left: 80%; 
+}
+
+main .expense-tracker .plusIcon{
+    position: relative;
+    top: 8px;
+}
+
+main .expense-tracker .expenses-container{
+    position: relative; /* Add this line */
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center; /* Center cards horizontally */
+    gap: 1rem; /* Space between cards */
+}
+
+main .expense-tracker .expenseCard{
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+    /* Remove any position:absolute or position:relative if present */
+    width: 100%; /* Adjust width as needed */
+    height: 10vh;
+    background-color: #f44336;
+    
+}
+
+main .expense-tracker .expenseCard:hover{
+    box-shadow: none;
+}
+
+main .expense-tracker .expenseCard .redIcon{
+border-radius: 100%;
+width: 15px;
+height: 15px;
+background-color: #fff;
+position: relative;
+top: 30%;
+left: 10%;
+}
+
+main .expense-tracker .expenseCard input{
+    position: relative;
+    left: 15%;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+}
+
+main .expense-tracker .expenseCard p{
+    position: relative;
+    margin-left: 5%;
+    top: 30%;
+    left: 15%;
+    font-size: 16px;
+    color: #fff;
+}
+
+main .goals{
+padding: var(--card-padding);
+background-color: var(--color-white);
+border-radius: var(--card-border-radius);
+margin-top: 1rem;
+box-shadow: var(--box-shadow);
+/* display: flex;
+justify-content: space-around;
+flex-wrap: wrap; */
+gap: 1.4rem;
+cursor: pointer;
+transition: all 0.3s ease;    
+background-color: rgb(0, 102, 255);
+color: #fff;
+}
+
+main .goals  .addIcon{
+text-align: center;
+width: 40px;
+ height: 40px;
+color: #333;
+background-color: #fff;
+border-radius:100% ;
+position: relative;
+left: 80%;
+}
+
+main .goals .plusIcon{
+    position: relative;
+    top: 8px;
+}
+
+main .goals .goalHeading{
+    text-align: center;
+}
+
+main .goals .goalCard{
+    display: flex;
+}
+
+main .goals #goal-items{
+    text-align: center;
+    position: relative; /* Add this line */
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    /* align-items: center;  Center cards horizontally */
+    gap: 1rem; /* Space between cards */
+
+}
+
+main .goals #goal-items li{
+    width: 100%; /* Adjust width as needed */
+    height: 10vh;
+    border-radius:10px ;
+    background-color: #edeffd;
+}
+
+main .goals #goal-items input{
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 18px;
+}
+
+main .goals #goal-items p{
+    color: #fff;
+}
+
+main .goals #goal-items .goal-date{
+    color: #333;
+    font-size: 16px;
+    position: relative;
+    top: 25%;
+}
+
+main .goals #goals-items li{
+position: relative; /* Add this line */
+/* display: flex; */
+flex-direction: column; /* Stack cards vertically */
+align-items: center; /* Center cards horizontally */
+gap: 1rem; /* Space between cards */    
+}
+
+main .goals #goals-items li .goalCard{
+    display: flex;
+    background-color: #fff;
+    color: #333;
+}
+
+input#budgetSlider {
+    position: relative;
+    top: 60%;
+}
+    
+
+
