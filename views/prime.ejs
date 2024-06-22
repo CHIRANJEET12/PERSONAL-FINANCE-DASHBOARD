@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prime</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .columns {
+            float: left;
+            width: 33.3%;
+            padding: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .price {
+            list-style-type: none;
+            border: 1px solid #eee;
+            margin: 0;
+            padding: 0;
+            transition: 0.3s;
+        }
+
+        .price:hover {
+            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .price .header {
+            background-color: #111;
+            color: white;
+            font-size: 25px;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .price li {
+            border-bottom: 1px solid #eee;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .price .grey {
+            background-color: #eee;
+            font-size: 20px;
+        }
+
+        .button {
+            background-color: #04AA6D;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .all {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .overlay-content {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .close-button {
+            background-color: #04AA6D;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .blur {
+            filter: blur(5px);
+        }
+
+        @media only screen and (max-width: 600px) {
+            .columns {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="all">
+    <h2>Responsive Pricing Tables</h2>
+    <p>Resize the browser window to see the effect.</p>
+
+    <div class="columns">
+        <ul class="price">
+            <li class="header">Basic</li>
+            <li class="grey">$ 9.99 / year</li>
+            <li>10GB Storage</li>
+            <li>10 Emails</li>
+            <li>10 Domains</li>
+            <li>1GB Bandwidth</li>
+            <li class="grey"><button onclick="showDetails('Basic Plan', 'Details about the Basic plan...')" class="button">Sign Up</button></li>
+        </ul>
+    </div>
+
+    <div class="columns">
+        <ul class="price">
+            <li class="header" style="background-color:#04AA6D">Pro</li>
+            <li class="grey">$ 24.99 / year</li>
+            <li>25GB Storage</li>
+            <li>25 Emails</li>
+            <li>25 Domains</li>
+            <li>2GB Bandwidth</li>
+            <li class="grey"><button onclick="showDetails('Pro Plan', 'Details about the Pro plan...')" class="button">Sign Up</button></li>
+        </ul>
+    </div>
+
+    <div class="columns">
+        <ul class="price">
+            <li class="header">Premium</li>
+            <li class="grey">$ 49.99 / year</li>
+            <li>50GB Storage</li>
+            <li>50 Emails</li>
+            <li>50 Domains</li>
+            <li>5GB Bandwidth</li>
+            <li class="grey"><button onclick="showDetails('Premium Plan', 'Details about the Premium plan...')" class="button">Sign Up</button></li>
+        </ul>
+    </div>
+</div>
+
+<div id="overlay" class="overlay">
+    <div class="overlay-content">
+        <h2 id="plan-title"></h2>
+        <p id="plan-details"></p>
+        <button class="close-button" onclick="closeOverlay()">Close</button>
+    </div>
+</div>
+
+<script>
+    function showDetails(title, details) {
+        document.getElementById('plan-title').innerText = title;
+        document.getElementById('plan-details').innerText = details;
+        document.getElementById('overlay').style.display = 'flex';
+        document.querySelector('.all').classList.add('blur');
+    }
+
+    function closeOverlay() {
+        document.getElementById('overlay').style.display = 'none';
+        document.querySelector('.all').classList.remove('blur');
+    }
+</script>
+
+</body>
+</html>
