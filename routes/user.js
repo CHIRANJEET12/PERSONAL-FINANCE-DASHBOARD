@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require('uuid');
 const User = require("../models/user");
 const Pin = require("../models/pin");
-const Exp = require("../models/expence");
+// const Exp = require("../models/expence");
 const multer = require("multer");
 const path = require('path');
 const fs = require("fs");
@@ -33,15 +33,7 @@ router.get("/", (req, res) => {
     res.render("home");
 });
 
-router.get("/expence", async (req, res) => {
-    try {
-        const expenses = await Exp.find({});
-        res.render("expence", { expenses });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Error retrieving data");
-    }
-});
+
 
 router.get("/login", (req, res) => {
     res.render("login");
@@ -58,6 +50,10 @@ router.get("/pin", authenticateToken, (req, res) => {
 router.get("/balance", (req, res) => {
     res.render("balance");
 });
+
+router.get("/prime",(req,res)=>{
+    res.render("prime")
+})
 
 router.get('/dashboard', authenticateToken, async (req, res) => {
     try {
@@ -184,15 +180,7 @@ router.post("/entre", authenticateToken, async (req, res) => {
     }
 });
 
-router.post("/exp", async (req, res) => {
-    const { money, desc } = req.body;
-    const newExp = new Exp({ money, desc });
-    try {
-        await newExp.save();
-        res.redirect('/expence');
-    } catch (err) {
-        res.status(400).send("Unable to save to database");
-    }
-});
+
+
 
 module.exports = router;
