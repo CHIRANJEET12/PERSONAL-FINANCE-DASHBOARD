@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dash Board</title>
     <link rel="stylesheet" href="/styles/dashboardStyle.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .slider-value {
+            color: black;
+        }
+        .delete-btn {
+            cursor: pointer;
+            color: rgb(0, 0, 0);
+            font-size: 1.2em;
+        }
+    </style>
 </head>
-
 <body>
     <div class="container">
         <aside>
@@ -106,14 +113,15 @@
             </div>
             <div class="expense-tracker">
                 <h1 class="heading">Track Your Expenses</h1>
+                <h4>click on the dot to save teh expense</h4>
                 <ul class="expenses-container" id="expensesContainer"></ul>
-                <a href="/expence">expence</a>
-
+                <!-- <a href="/expence">expence</a> -->
+                
                 <div class="addIcon">
                     <span id="add-expense" class="material-symbols-outlined plusIcon">add</span>
                 </div>
             </div>
-            
+            <button>Save</button>
 
             <div class="goals">
                 <h1 class="goalHeading">Dream Big Save Now</h1>
@@ -124,76 +132,140 @@
             </div>
 
             <script>
-                document.addEventListener('DOMContentLoaded', function () {
+                document.addEventListener('DOMContentLoaded', function() {
                     var addButton = document.getElementById('add-expense');
                     var goalButton = document.getElementById('add-goal');
-
-                    addButton.addEventListener('click', function () {
+                
+                    addButton.addEventListener('click', function() {
                         var container = document.getElementById('expensesContainer');
                         var noCards = document.getElementById('no-cards-msg');
-
+                
                         if (noCards) {
                             noCards.remove();
                         }
-
-                        var card = document.createElement('li');
-                        card.className = 'expenseCard';
-                        var date = new Date().toISOString().split('T')[0];
-                        card.innerHTML = `
-                        <form action="/exp" method="POST">
-                            
-    <div class="redIcon"></div>
-    <input name="money" type="number" placeholder="Enter expense" required autofocus autocomplete="off"/>
-    <input name="desc" type="text" placeholder="Enter description" required autocomplete="off"/>
-    <button type="submit">Save</button>
-</form>
-     <p>Date: ${date}</p>
-        <p>Time: ${new Date().toLocaleTimeString()}</p>
-`;
+                
+                        var card = createExpenseCard();
                         container.appendChild(card);
+                        card.querySelector('input').focus();
                     });
-
-                    goalButton.addEventListener('click', function () {
+                
+                    goalButton.addEventListener('click', function() {
                         var container = document.getElementById('goal-items');
                         var nogoalCards = document.getElementById('no-goal-cards-msg');
-
+                
                         if (nogoalCards) {
                             nogoalCards.remove();
                         }
-
+                
+                        var card = createGoalCard();
+                        container.appendChild(card);
+                        card.querySelector('input[type="number"]').focus();
+                    });
+                
+                    function createExpenseCard(data = {}) {
+                        var card = document.createElement('li');
+                        card.className = 'expenseCard';
+                        var date = data.date || new Date().toISOString().split('T')[0];
+                        var time = data.time || new Date().toLocaleTimeString();
+                        var expense = data.expense || '';
+                
+                        card.innerHTML = `
+                            <div class="redIcon"></div>
+                            <input id="expense-input" type="text" placeholder="Enter expense" value="${expense}" autofocus autocomplete="off"/>
+                            <p>Date: ${date}</p>
+                            <p>Time: ${time}</p>
+                            <span class="delete-btn material-symbols-outlined">delete</span>
+                        `;
+                
+                        var expenseInput = card.querySelector('#expense-input');
+                        var deleteBtn = card.querySelector('.delete-btn');
+                
+                        expenseInput.addEventListener('blur', function() {
+                            const cardData = {
+                                id: data.id || Date.now(), // Unique identifier (timestamp)
+                                expense: expenseInput.value,
+                                date: date,
+                                time: time
+                            };
+                            localStorage.setItem(`expenseCard_${cardData.id}`, JSON.stringify(cardData));
+                        });
+                
+                        deleteBtn.addEventListener('click', function() {
+                            card.remove();
+                            localStorage.removeItem(`expenseCard_${data.id}`);
+                        });
+                
+                        return card;
+                    }
+                
+                    function createGoalCard(data = {}) {
                         var card = document.createElement('li');
                         card.className = 'goalCard';
-                        var date = new Date().toISOString().split('T')[0];
+                        var date = data.date || new Date().toISOString().split('T')[0];
+                        var budget = data.budget || 0;
+                        var savings = data.savings || 0;
+                        var progress = data.progress || 0;
+                
                         card.innerHTML = `
-                        <input type="range" class="budgetProgressBar" id="budgetSlider" min="0" max="10000">
-                        <input type="number" id="userBudget" placeholder="Enter Budget" min="0">
-                        <input type="number" id="userSavings" placeholder="Enter Savings" min="0">
-                        <div class="slider-value"><span id="sliderValue"></span></div>
-                        <p class="goal-date">Date: ${date}</p>`;
-                        container.appendChild(card);
+                            <input type="range" class="budgetProgressBar" id="budgetSlider" min="0" max="10000" value="${progress}">
+                            <input type="number" id="userBudget" placeholder="Enter Budget" min="0" value="${budget}">
+                            <input type="number" id="userSavings" placeholder="Enter Savings" min="0" value="${savings}">
+                            <div class="slider-value"><span id="sliderValue">${progress}</span></div>
+                            <p class="goal-date">Date: ${date}</p>
+                            <span class="delete-btn material-symbols-outlined">delete</span>
+                        `;
+                
+                        var budgetInput = card.querySelector('#userBudget');
+                        var savingsInput = card.querySelector('#userSavings');
+                        var slider = card.querySelector('#budgetSlider');
+                        var sliderValue = card.querySelector('#sliderValue');
+                        var deleteBtn = card.querySelector('.delete-btn');
+                
+                        slider.addEventListener('input', function() {
+                            sliderValue.textContent = slider.value;
+                        });
+                
+                        [budgetInput, savingsInput].forEach(input => {
+                            input.addEventListener('blur', function() {
+                                const cardData = {
+                                    id: data.id || Date.now(), // Unique identifier (timestamp)
+                                    budget: budgetInput.value,
+                                    savings: savingsInput.value,
+                                    progress: slider.value,
+                                    date: date
+                                };
+                                localStorage.setItem(`goalCard_${cardData.id}`, JSON.stringify(cardData));
+                            });
+                        });
+                
+                        deleteBtn.addEventListener('click', function() {
+                            card.remove();
+                            localStorage.removeItem(`goalCard_${data.id}`);
+                        });
+                
+                        return card;
+                    }
+                
+                    // Load saved expense cards from localStorage
+                    Object.keys(localStorage).forEach(key => {
+                        if (key.startsWith('expenseCard_')) {
+                            const data = JSON.parse(localStorage.getItem(key));
+                            const card = createExpenseCard(data);
+                            document.getElementById('expensesContainer').appendChild(card);
+                        }
                     });
-
-                    window.onload = function () {
-                        var expenseContainer = document.getElementById('expensesContainer');
-                        var goalContainer = document.getElementById('goal-items');
-
-                        if (expenseContainer.children.length === 0) {
-                            var noCardsMsg = document.createElement('p');
-                            noCardsMsg.id = 'no-cards-msg';
-                            noCardsMsg.textContent = 'No cards are present. To add an expense, click on the add icon.';
-                            expenseContainer.appendChild(noCardsMsg);
+                
+                    // Load saved goal cards from localStorage
+                    Object.keys(localStorage).forEach(key => {
+                        if (key.startsWith('goalCard_')) {
+                            const data = JSON.parse(localStorage.getItem(key));
+                            const card = createGoalCard(data);
+                            document.getElementById('goal-items').appendChild(card);
                         }
-
-                        if (goalContainer.children.length === 0) {
-                            var nogoalCardsMsg = document.createElement('p');
-                            nogoalCardsMsg.id = 'no-goal-cards-msg';
-                            nogoalCardsMsg.innerHTML = `“If you’re saving, you’re succeeding.” - Steve Burkholder.<br>Click on the '+' icon to open the door to a better future.`;
-                            goalContainer.appendChild(nogoalCardsMsg);
-                        }
-                    };
+                    });
                 });
             </script>
-
+        </main>
+    </div>
 </body>
-
 </html>
