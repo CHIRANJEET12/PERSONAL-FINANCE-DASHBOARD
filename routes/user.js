@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require('uuid');
 const User = require("../models/user");
 const Pin = require("../models/pin");
+// const Exp = require("../models/expence");
 const multer = require("multer");
 const path = require('path');
 const fs = require("fs");
@@ -32,6 +33,8 @@ router.get("/", (req, res) => {
     res.render("home");
 });
 
+
+
 router.get("/login", (req, res) => {
     res.render("login");
 });
@@ -43,8 +46,13 @@ router.get("/signup", (req, res) => {
 router.get("/pin", authenticateToken, (req, res) => {
     res.render("pin");
 });
-router.get("/balance",(req,res)=>{
-    res.render("balance")
+
+router.get("/balance", (req, res) => {
+    res.render("balance");
+});
+
+router.get("/prime",(req,res)=>{
+    res.render("prime")
 })
 
 router.get('/dashboard', authenticateToken, async (req, res) => {
@@ -171,5 +179,8 @@ router.post("/entre", authenticateToken, async (req, res) => {
         return res.status(500).send("Error in pin-validation. Please try again later.");
     }
 });
+
+
+
 
 module.exports = router;
