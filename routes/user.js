@@ -47,6 +47,10 @@ router.get("/pin", authenticateToken, (req, res) => {
     res.render("pin");
 });
 
+router.get("/enter_pin",authenticateToken, (req, res) => {
+    res.render("enter_pin");
+});
+
 router.get("/balance", (req, res) => {
     res.render("balance");
 });

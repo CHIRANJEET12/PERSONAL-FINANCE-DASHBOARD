@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dash Board</title>
+    <link rel="stylesheet" href="/styles/dashboardStyle.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -12,57 +14,53 @@
         .slider-value {
             color: black;
         }
-        .delete-btn {
-            cursor: pointer;
-            color: rgb(0, 0, 0);
-            font-size: 1.2em;
-        }
     </style>
 </head>
+
 <body>
-<div class="container">
-    <aside>
-        <div class="toggle">
-            <h2>FinTrack</h2>
-            <a href="#" class="close" id="close-btn">
-                <span class="material-symbols-outlined">
-                    close
-                </span>
-            </a>
-        </div>
-        <div class="sidebar">
-            <a href="#" class="active">
-                <span class="material-symbols-outlined">
-                    dashboard
-                </span>
-                <h3>Dashboard</h3>
-            </a>
-            <a href="/" class="home">
-                <span class="material-symbols-outlined">
-                    home
-                </span>
-                <h3>Home</h3>
-            </a>
-            <a href="#" class="adAc">
-                <span class="material-symbols-outlined adAcSpan">
-                    person_add
-                </span>
-                <h3>Add Account</h3>
-            </a>
-            <a href="#" class="settings">
-                <span class="material-symbols-outlined">
-                    settings
-                </span>
-                <h3>Settings</h3>
-            </a>
-            <a href="#">
-                <span class="material-symbols-outlined">
-                    logout
-                </span>
-                <h3>Logout</h3>
-            </a>
-        </div>
-    </aside>
+    <div class="container">
+        <aside>
+            <div class="toggle">
+                <h2>FinTrack</h2>
+                <a href="#" class="close" id="close-btn">
+                    <span class="material-symbols-outlined">
+                        close
+                    </span>
+                </a>
+            </div>
+            <div class="sidebar">
+                <a href="#" class="active">
+                    <span class="material-symbols-outlined">
+                        dashboard
+                    </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="/" class="home">
+                    <span class="material-symbols-outlined">
+                        home
+                    </span>
+                    <h3>Home</h3>
+                </a>
+                <a href="/signup" class="adAc">
+                    <span class="material-symbols-outlined adAcSpan">
+                        person_add
+                    </span>
+                    <h3>Add Account</h3>
+                </a>
+                <a href="#" class="settings">
+                    <span class="material-symbols-outlined">
+                        settings
+                    </span>
+                    <h3>Settings</h3>
+                </a>
+                <form class="lastChild" action="/logout" method="POST">
+                    <button type="submit" style="border: none; background: none;">
+                        <span class="material-symbols-outlined">logout</span>
+                        <h3>Logout</h3>
+                    </button>
+                </form>
+            </div>
+        </aside>
 
         <!-- MAIN CONTENT -->
         <main>
@@ -70,7 +68,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h1>FinBank</h1>
-                        <img class="logo" src="/styles/0b087c9ad51a5c0a3afd57a05ebe4bee-removebg-preview.png" alt="Visa Logo">
+                        <img class="logo" src="/styles/0b087c9ad51a5c0a3afd57a05ebe4bee-removebg-preview.png"
+                            alt="Visa Logo">
                     </div>
                     <div class="card-number">
                         <%= cardnumber %>
@@ -112,107 +111,174 @@
             </div>
             <div class="expense-tracker">
                 <h1 class="heading">Track Your Expenses</h1>
-                <ul class="expenses-container" id="expensesContainer">
-                </ul>
-                <!-- Placeholder for No Cards Message -->
-            <!-- <p id="no-cards-msg">No cards are present. To add expense, click on the add icon.</p> -->
-              <div class="addIcon">
-            <span id="add-expense" class="material-symbols-outlined plusIcon">
-            add
-            </span>
+                <ul class="expenses-container" id="expensesContainer"></ul>
+                <a href="/expence">expence</a>
+                <div class="addIcon">
+                    <span id="add-expense" class="material-symbols-outlined plusIcon">add</span>
+                </div>
             </div>
-            </div>
-            
+
             <div class="goals">
-              <h1 class="goalHeading"> Dream Big Save Now</h1>
-            <ul id="goal-items">
-            </ul>
-            <div class="addIcon">
-            <span id="add-goal" class="material-symbols-outlined plusIcon">
-            add
-            </span>
+                <h1 class="goalHeading">Dream Big Save Now</h1>
+                <ul id="goal-items"></ul>
+                <div class="addIcon">
+                    <span id="add-goal" class="material-symbols-outlined plusIcon">add</span>
+                </div>
             </div>
-            </div>            
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var addButton = document.getElementById('add-expense');
+                    var goalButton = document.getElementById('add-goal');
+
+                    addButton.addEventListener('click', function () {
+                        var container = document.getElementById('expensesContainer');
+                        var noCards = document.getElementById('no-cards-msg');
+
+                        if (noCards) {
+                            noCards.remove();
+                        }
+
+                        var card = createExpenseCard();
+                        container.appendChild(card);
+                        card.querySelector('input').focus();
+                    });
+
+                    goalButton.addEventListener('click', function () {
+                        var container = document.getElementById('goal-items');
+                        var nogoalCards = document.getElementById('no-goal-cards-msg');
+
+                        if (nogoalCards) {
+                            nogoalCards.remove();
+                        }
+
+                        var card = createGoalCard();
+                        container.appendChild(card);
+                        card.querySelector('input[type="number"]').focus();
+                    });
+
+                    function createExpenseCard(data = {}) {
+                        var card = document.createElement('li');
+                        card.className = 'expenseCard';
+                        var date = data.date || new Date().toISOString().split('T')[0];
+                        var time = data.time || new Date().toLocaleTimeString();
+                        var expense = data.expense || '';
+                        var id = data.id || Date.now();
+
+                        card.setAttribute('id', `expenseCard_${id}`);
+
+                        card.innerHTML = `
+                            <div class="redIcon"></div>
+                            <input id="expense-input" type="text" placeholder="Enter expense" value="${expense}" autofocus autocomplete="off"/>
+                            <p>Date: ${date}</p>
+                            <p>Time: ${time}</p>
+                            <span class="material-symbols-outlined bin" onclick="deleteExpenseCard(${id})">delete</span>
+                        `;
+
+                        var expenseInput = card.querySelector('#expense-input');
+                        expenseInput.addEventListener('blur', function () {
+                            const cardData = {
+                                id: id,
+                                expense: expenseInput.value,
+                                date: date,
+                                time: time
+                            };
+                            localStorage.setItem(`expenseCard_${id}`, JSON.stringify(cardData));
+                        });
+
+                        return card;
+                    }
+
+                    function createGoalCard(data = {}) {
+                        var card = document.createElement('li');
+                        card.className = 'goalCard';
+                        var date = data.date || new Date().toISOString().split('T')[0];
+                        var budget = data.budget || 0;
+                        var savings = data.savings || 0;
+                        var progress = data.progress || 0;
+                        var id = data.id || Date.now();
+
+                        card.setAttribute('id', `goalCard_${id}`);
+
+                        card.innerHTML = `
+                            <input type="range" class="budgetProgressBar" id="budgetSlider" min="0" max="10000" value="${progress}">
+                            <input type="number" id="userBudget" placeholder="Enter Budget" min="0" value="${budget}">
+                            <input type="number" id="userSavings" placeholder="Enter Savings" min="0" value="${savings}">
+                            <div class="slider-value"><span id="sliderValue">${progress}</span></div>
+                            <p class="goal-date">Date: ${date}</p>
+                            <span class="material-symbols-outlined bin" onclick="deleteGoalCard(${id})">delete</span>
+                        `;
+
+                        var budgetInput = card.querySelector('#userBudget');
+                        var savingsInput = card.querySelector('#userSavings');
+                        var slider = card.querySelector('#budgetSlider');
+                        var sliderValue = card.querySelector('#sliderValue');
+
+                        budgetInput.addEventListener('blur', function () {
+                            saveGoalCard(card, id);
+                        });
+                        savingsInput.addEventListener('blur', function () {
+                            saveGoalCard(card, id);
+                        });
+                        slider.addEventListener('input', function () {
+                            sliderValue.textContent = slider.value;
+                        });
+                        slider.addEventListener('change', function () {
+                            saveGoalCard(card, id);
+                        });
+
+                        return card;
+                    }
+
+                    function saveGoalCard(card, id) {
+                        const cardData = {
+                            id: id,
+                            budget: card.querySelector('#userBudget').value,
+                            savings: card.querySelector('#userSavings').value,
+                            progress: card.querySelector('#budgetSlider').value,
+                            date: card.querySelector('.goal-date').textContent.split(': ')[1]
+                        };
+                        localStorage.setItem(`goalCard_${id}`, JSON.stringify(cardData));
+                    }
+
+                    function deleteExpenseCard(id) {
+                        document.getElementById('expenseCard_' + id).remove();
+                        localStorage.removeItem('expenseCard_' + id);
+                    }
+
+                    function deleteGoalCard(id) {
+                        document.getElementById('goalCard_' + id).remove();
+                        localStorage.removeItem('goalCard_' + id);
+                    }
+
+                    function loadCards() {
+                        const expenseContainer = document.getElementById('expensesContainer');
+                        const goalContainer = document.getElementById('goal-items');
+
+                        for (var i = 0; i < localStorage.length; i++) {
+                            var key = localStorage.key(i);
+                            if (key.startsWith('expenseCard_')) {
+                                var cardData = JSON.parse(localStorage.getItem(key));
+                                if (!document.getElementById(`expenseCard_${cardData.id}`)) {
+                                    var card = createExpenseCard(cardData);
+                                    expenseContainer.appendChild(card);
+                                }
+                            } else if (key.startsWith('goalCard_')) {
+                                var cardData = JSON.parse(localStorage.getItem(key));
+                                if (!document.getElementById(`goalCard_${cardData.id}`)) {
+                                    var card = createGoalCard(cardData);
+                                    goalContainer.appendChild(card);
+                                }
+                            }
+                        }
+                    }
+
+                    loadCards();
+                });
+            </script>
         </main>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var addButton = document.getElementById('add-expense');
-        var goalButton = document.getElementById('add-goal');
-        
-        addButton.addEventListener('click', function() {
-        var container = document.getElementById('expensesContainer');
-        var noCards = document.getElementById('no-cards-msg');
-        
-        // If 'no-cards-msg' message exists, remove it
-        if (noCards) {
-        noCards.remove();
-        }
-        
-        var card = document.createElement('li');
-        card.className = 'expenseCard';
-        var date = new Date().toISOString().split('T')[0];
-        card.innerHTML = `
-        <div class="redIcon"></div>
-        <input id="expense-input" type="text" placeholder="Enter expense" autofocus autocomplete="off"/>
-        <p>Date: ${date}</p>
-        <p>Time: ${new Date().toLocaleTimeString()}</p>
-        `;
-        container.appendChild(card);
-        });
-        
-        goalButton.addEventListener('click', function() {
-        var container = document.getElementById('goal-items');
-        var nogoalCards = document.getElementById('no-goal-cards-msg');
-        
-        // If 'no-cards-msg' message exists, remove it
-        if (nogoalCards) {
-        nogoalCards.remove();
-        }
-        
-        var card = document.createElement('li');
-        card.className = 'goalCard';
-        var date = new Date().toISOString().split('T')[0];
-        card.innerHTML = `
-        <input type="range" class="budgetProgressBar" id="budgetSlider" min="0" max="10000" >
-                <input type="number" id="userBudget" placeholder="Enter Budget" min="0">
-                <input type="number" id="userSavings" placeholder="Enter Savings" min="0">
-                <div class="slider-value"><span id="sliderValue"></span></div>
-        <p class="goal-date">Date: ${date}</p>
-        `;
-        container.appendChild(card);
-        });
-        
-        // Check if there are any cards when the app loads
-        window.onload = function() {
-        var expenseContainer = document.getElementById('expensesContainer');
-        var goalContainer = document.getElementById('goal-items');
-        
-        if (expenseContainer.children.length === 0) {
-        var noCardsMsg = document.createElement('p');
-        noCardsMsg.id = 'no-cards-msg';
-        noCardsMsg.textContent = 'No cards are present. To add an expense, click on the add icon.';
-        expenseContainer.appendChild(noCardsMsg);
-        }
-        
-        if (goalContainer.children.length === 0) {
-        var nogoalCardsMsg = document.createElement('p');
-        nogoalCardsMsg.id = 'no-goal-cards-msg';
-        nogoalCardsMsg.innerHTML = `“If you’re saving, you’re succeeding.” - Steve Burkholder.<br>Click on the '+' icon to open the door to a better future.`;
-        goalContainer.appendChild(nogoalCardsMsg);
-        }
-        };
-        
-        document.getElementById('expense-input').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-        // Code to save the expense goes here
-        var expense = this.value;
-        // Add code to handle saving the expense
-        }
-        });
-        });
-        
-        
-        </script>    
+    <script src="/js/dashboard.js"></script>
 </body>
+
 </html>

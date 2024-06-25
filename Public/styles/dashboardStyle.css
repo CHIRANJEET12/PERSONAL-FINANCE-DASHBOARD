@@ -64,6 +64,10 @@ a{
     color: var(--color-dark);
 }
 
+span {}
+
+span {}
+
 
 h1{
     font-weight: 800;
@@ -185,32 +189,10 @@ aside .sidebar a span{
     top: 13px;
 }
 
-form.lastChild{
-    display: flex;
+aside .sidebar a:last-child{
     position: absolute;
     bottom: 2rem;
     width: 100%;
-}
-
-form.lastChild button{
-    display: flex;
-    color: var(--color-info-dark);
-    height: 3rem;
-    margin-left: 1rem;
-    transition: all 0.3s ease;
-}
-
-form.lastChild span{
-    font-size: 1.6rem;
-    line-height: 10px;
-    transition: all 0.3s ease;
-    position: relative;
-    top: 13px;
-}
-
-form.lastChild button:hover{
-    margin-left: 0.5rem; 
-    color: var(--color-primary);   
 }
 
 aside .sidebar a.active{
@@ -278,7 +260,7 @@ main .all-finDtls{
 }
 
 .card {
-    width: 400px;
+    width: 350px;
     height: 40vh;
     background: linear-gradient(45deg, orange, pink);
     border-radius: 15px;
@@ -299,7 +281,7 @@ main .all-finDtls{
 .card .logo{
 position: relative;
 top: -40px;
-left: 240px;    
+left: 200px;    
 }  
 
 .card .card-number{
@@ -366,7 +348,6 @@ main .share i{
 main .share:hover{
 box-shadow: none;
 }
-
 
 main .expense-tracker{
     background-color: var(--color-white);
@@ -459,6 +440,13 @@ main .expense-tracker .expenseCard p{
     top: 30%;
     left: 15%;
     font-size: 16px;
+    color: #fff;
+}
+
+main .expense-tracker .bin{
+    position: relative;
+    left: 20%;
+    top: 30%;
     color: #fff;
 }
 
@@ -557,5 +545,92 @@ input#budgetSlider {
     top: 60%;
 }
     
+.right-section{
+    margin-top: 1.4rem;
+    width: 50%;
+}
+
+.right-section .nav{
+    display: flex;
+    justify-content: baseline;
+    gap: 2rem; 
+}
+
+.right-section .nav button{
+    display: none;
+}
+
+.right-section .dark-mode{
+    background-color: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.6rem;
+    width: 3.2rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-1);
+    position: relative;
+    left: 20%;
+}
+
+.right-section .dark-mode span{
+    font-size: 1.2rem;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-section .dark-mode span.active{
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--border-radius-1);
+}
+
+.right-section .profile{
+    width: 30%;
+}
+
+.right-section .profile .main-pic{
+    width: 2vw;
+    height: 4vh;
+    cursor: pointer;
+    position: relative;
+    left: 60%;
+}
+
+.right-section .profile .sub-menu-div{
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 320px;
+}
+
+.right-section .profile .sub-menu{
+    background: #fff;
+    padding: 20px;
+    margin: 10px;
+}
+
+.right-section .profile .user-info{
+    align-items: center;
+}
+
+.right-section .profile .user-info .hidden-pic{
+    width: 5vw;
+    height: 10vh;
+    position: relative;
+left: 40%;
+border-radius: 50%;
+}
 
 
+.right-section .profile .user-info h2{
+font-weight: 700;
+}
+
+.move-to-acc {
+display: flex;
+margin-top: 15px;
+}
