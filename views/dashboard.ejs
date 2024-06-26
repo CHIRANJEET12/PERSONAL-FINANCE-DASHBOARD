@@ -11,6 +11,61 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+        .bin {
+            color: black;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+        .lastChild {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #FFFFFF;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin-top: 300px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .lastChild button {
+      display: flex;
+      align-items: center;
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.3s ease;
+    }
+
+    .lastChild button:hover {
+      color: #0056b3;
+    }
+
+    .lastChild .material-symbols-outlined {
+      font-size: 24px;
+      margin-right: 8px;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+
+    .lastChild h3 {
+      font-size: 18px;
+      margin-top: -20px;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+
+    .lastChild button:hover .material-symbols-outlined,
+    .lastChild button:hover h3 {
+      color: #0056b3;
+    }
+
+    .lastChild:hover {
+      background-color: #e0e0e0;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
         .slider-value {
             color: black;
         }
@@ -112,7 +167,7 @@
             <div class="expense-tracker">
                 <h1 class="heading">Track Your Expenses</h1>
                 <ul class="expenses-container" id="expensesContainer"></ul>
-                <a href="/expence">expence</a>
+                <a href="#">click on the dot to save</a>
                 <div class="addIcon">
                     <span id="add-expense" class="material-symbols-outlined plusIcon">add</span>
                 </div>
@@ -157,128 +212,153 @@
                         card.querySelector('input[type="number"]').focus();
                     });
 
-                    function createExpenseCard(data = {}) {
-                        var card = document.createElement('li');
-                        card.className = 'expenseCard';
-                        var date = data.date || new Date().toISOString().split('T')[0];
-                        var time = data.time || new Date().toLocaleTimeString();
-                        var expense = data.expense || '';
-                        var id = data.id || Date.now();
+                    loadCards();
+                });
 
-                        card.setAttribute('id', `expenseCard_${id}`);
+                function createExpenseCard(data = {}) {
+                    var card = document.createElement('li');
+                    card.className = 'expenseCard';
+                    var date = data.date || new Date().toISOString().split('T')[0];
+                    var time = data.time || new Date().toLocaleTimeString();
+                    var expense = data.expense || '';
+                    var id = data.id || Date.now();
 
-                        card.innerHTML = `
-                            <div class="redIcon"></div>
-                            <input id="expense-input" type="text" placeholder="Enter expense" value="${expense}" autofocus autocomplete="off"/>
-                            <p>Date: ${date}</p>
-                            <p>Time: ${time}</p>
-                            <span class="material-symbols-outlined bin" onclick="deleteExpenseCard(${id})">delete</span>
-                        `;
+                    card.setAttribute('id', `expenseCard_${id}`);
 
-                        var expenseInput = card.querySelector('#expense-input');
-                        expenseInput.addEventListener('blur', function () {
-                            const cardData = {
-                                id: id,
-                                expense: expenseInput.value,
-                                date: date,
-                                time: time
-                            };
-                            localStorage.setItem(`expenseCard_${id}`, JSON.stringify(cardData));
-                        });
+                    card.innerHTML = `
+                    
+                        <div class="redIcon"></div>
+                        <input id="expense-input" type="text" placeholder="Enter expense" value="${expense}" autofocus autocomplete="off"/>
+                        <p>Date: ${date}</p>
+                        <p>Time: ${time}</p>
+                        <span class="material-symbols-outlined bin" onclick="deleteExpenseCard(${id})">delete</span>
+                    `;
 
-                        return card;
-                    }
-
-                    function createGoalCard(data = {}) {
-                        var card = document.createElement('li');
-                        card.className = 'goalCard';
-                        var date = data.date || new Date().toISOString().split('T')[0];
-                        var budget = data.budget || 0;
-                        var savings = data.savings || 0;
-                        var progress = data.progress || 0;
-                        var id = data.id || Date.now();
-
-                        card.setAttribute('id', `goalCard_${id}`);
-
-                        card.innerHTML = `
-                            <input type="range" class="budgetProgressBar" id="budgetSlider" min="0" max="10000" value="${progress}">
-                            <input type="number" id="userBudget" placeholder="Enter Budget" min="0" value="${budget}">
-                            <input type="number" id="userSavings" placeholder="Enter Savings" min="0" value="${savings}">
-                            <div class="slider-value"><span id="sliderValue">${progress}</span></div>
-                            <p class="goal-date">Date: ${date}</p>
-                            <span class="material-symbols-outlined bin" onclick="deleteGoalCard(${id})">delete</span>
-                        `;
-
-                        var budgetInput = card.querySelector('#userBudget');
-                        var savingsInput = card.querySelector('#userSavings');
-                        var slider = card.querySelector('#budgetSlider');
-                        var sliderValue = card.querySelector('#sliderValue');
-
-                        budgetInput.addEventListener('blur', function () {
-                            saveGoalCard(card, id);
-                        });
-                        savingsInput.addEventListener('blur', function () {
-                            saveGoalCard(card, id);
-                        });
-                        slider.addEventListener('input', function () {
-                            sliderValue.textContent = slider.value;
-                        });
-                        slider.addEventListener('change', function () {
-                            saveGoalCard(card, id);
-                        });
-
-                        return card;
-                    }
-
-                    function saveGoalCard(card, id) {
+                    var expenseInput = card.querySelector('#expense-input');
+                    expenseInput.addEventListener('blur', function () {
                         const cardData = {
                             id: id,
-                            budget: card.querySelector('#userBudget').value,
-                            savings: card.querySelector('#userSavings').value,
-                            progress: card.querySelector('#budgetSlider').value,
-                            date: card.querySelector('.goal-date').textContent.split(': ')[1]
+                            expense: expenseInput.value,
+                            date: date,
+                            time: time
                         };
-                        localStorage.setItem(`goalCard_${id}`, JSON.stringify(cardData));
+                        localStorage.setItem(`expenseCard_${id}`, JSON.stringify(cardData));
+                    });
+
+                    return card;
+                }
+
+                function createGoalCard(data = {}) {
+                    var card = document.createElement('li');
+                    card.className = 'goalCard';
+                    var date = data.date || new Date().toISOString().split('T')[0];
+                    var budget = data.budget || 0;
+                    var savings = data.savings || 0;
+                    var progress = data.progress || 0;
+                    var id = data.id || Date.now();
+
+                    card.setAttribute('id', `goalCard_${id}`);
+
+                    card.innerHTML = `
+                        <input type="range" class="budgetProgressBar" id="budgetSlider" min="0" max="10000" value="${progress}">
+                        <input type="number" id="userBudget" placeholder="Enter Budget" min="0" value="${budget}">
+                        <input type="number" id="userSavings" placeholder="Enter Savings" min="0" value="${savings}">
+                        <div class="slider-value"><span id="sliderValue">${progress}</span></div>
+                        <p class="goal-date">Date: ${date}</p>
+                        <span class="material-symbols-outlined bin" onclick="deleteGoalCard(${id})">delete</span>
+                    `;
+
+                    var budgetInput = card.querySelector('#userBudget');
+                    var savingsInput = card.querySelector('#userSavings');
+                    var slider = card.querySelector('#budgetSlider');
+                    var sliderValue = card.querySelector('#sliderValue');
+
+                    budgetInput.addEventListener('blur', function () {
+                        saveGoalCard(card, id);
+                    });
+                    savingsInput.addEventListener('blur', function () {
+                        saveGoalCard(card, id);
+                    });
+                    slider.addEventListener('input', function () {
+                        sliderValue.textContent = slider.value;
+                        saveGoalCard(card, id);
+                    });
+
+                    return card;
+                }
+
+                function saveGoalCard(card, id) {
+                    var date = new Date().toISOString().split('T')[0];
+                    const cardData = {
+                        id: id,
+                        budget: card.querySelector('#userBudget').value,
+                        savings: card.querySelector('#userSavings').value,
+                        progress: card.querySelector('#budgetSlider').value,
+                        date: date
+                    };
+                    localStorage.setItem(`goalCard_${id}`, JSON.stringify(cardData));
+                }
+
+                function deleteExpenseCard(id) {
+                    var card = document.getElementById(`expenseCard_${id}`);
+                    if (card) {
+                        card.remove();
+                        localStorage.removeItem(`expenseCard_${id}`);
                     }
+                }
 
-                    function deleteExpenseCard(id) {
-                        document.getElementById('expenseCard_' + id).remove();
-                        localStorage.removeItem('expenseCard_' + id);
+                function deleteGoalCard(id) {
+                    var card = document.getElementById(`goalCard_${id}`);
+                    if (card) {
+                        card.remove();
+                        localStorage.removeItem(`goalCard_${id}`);
                     }
-
-                    function deleteGoalCard(id) {
-                        document.getElementById('goalCard_' + id).remove();
-                        localStorage.removeItem('goalCard_' + id);
-                    }
-
-                    function loadCards() {
-                        const expenseContainer = document.getElementById('expensesContainer');
-                        const goalContainer = document.getElementById('goal-items');
-
-                        for (var i = 0; i < localStorage.length; i++) {
-                            var key = localStorage.key(i);
+                }
+                function loadExpenses() {
+                    var expenseContainer = document.getElementById('expensesContainer');
+                    if (localStorage.length === 0) {
+                        var noCardsMsg = document.createElement('p');
+                        noCardsMsg.id = 'no-cards-msg';
+                        noCardsMsg.textContent = 'No cards are present. To add an expense, click on the add icon.';
+                        expenseContainer.appendChild(noCardsMsg);
+                    } else {
+                        for (let i = 0; i < localStorage.length; i++) {
+                            const key = localStorage.key(i);
                             if (key.startsWith('expenseCard_')) {
-                                var cardData = JSON.parse(localStorage.getItem(key));
-                                if (!document.getElementById(`expenseCard_${cardData.id}`)) {
-                                    var card = createExpenseCard(cardData);
-                                    expenseContainer.appendChild(card);
-                                }
-                            } else if (key.startsWith('goalCard_')) {
-                                var cardData = JSON.parse(localStorage.getItem(key));
-                                if (!document.getElementById(`goalCard_${cardData.id}`)) {
-                                    var card = createGoalCard(cardData);
-                                    goalContainer.appendChild(card);
-                                }
+                                const storedCardData = JSON.parse(localStorage.getItem(key));
+                                const card = createExpenseCard(storedCardData);
+                                expenseContainer.appendChild(card);
                             }
                         }
                     }
+                }
 
-                    loadCards();
-                });
+                function loadGoals() {
+                    var goalContainer = document.getElementById('goal-items');
+                    var hasGoals = false;
+
+                    for (let i = 0; i < localStorage.length; i++) {
+                        const key = localStorage.key(i);
+                        if (key.startsWith('goalCard_')) {
+                            const storedCardData = JSON.parse(localStorage.getItem(key));
+                            const card = createGoalCard(storedCardData);
+                            goalContainer.appendChild(card);
+                            hasGoals = true;
+                        }
+                    }
+
+                    if (!hasGoals) {
+                        var nogoalCardsMsg = document.createElement('p');
+                        nogoalCardsMsg.id = 'no-goal-cards-msg';
+                        nogoalCardsMsg.innerHTML =`If you’re saving, you’re succeeding.” - Steve Burkholder.        Click on the '+' icon to open the door to a better future.`;
+                        goalContainer.appendChild(nogoalCardsMsg);
+                    }
+                }
+                loadExpenses();
+    loadGoals();
             </script>
         </main>
     </div>
-    <script src="/js/dashboard.js"></script>
 </body>
 
 </html>

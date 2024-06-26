@@ -1,18 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enter PIN</title>
-    <link rel="stylesheet" href="/styles/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enter PIN</title>
+  <!-- <link rel="stylesheet" href="/styles/style.css"> -->
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    form {
+      background: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .mb-3 {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #80bdff;
+      outline: none;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+
+  </style>
 </head>
+
 <body>
-    <form id="mpinForm" action="/entre" method="POST" class="hide">
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Enter the correct pin</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="pin" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+  <form id="mpinForm" action="/entre" method="POST" >
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Enter the correct pin</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" name="pin" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </body>
+
 </html>
