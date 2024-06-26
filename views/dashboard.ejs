@@ -108,8 +108,8 @@
                     </span>
                     <h3>Settings</h3>
                 </a>
-                <form class="lastChild" action="/logout" method="POST">
-                    <button type="submit" style="border: none; background: none;">
+                <form  action="/logout" method="POST">
+                    <button type="submit" class="lastChild">
                         <span class="material-symbols-outlined">logout</span>
                         <h3>Logout</h3>
                     </button>
@@ -167,7 +167,7 @@
             <div class="expense-tracker">
                 <h1 class="heading">Track Your Expenses</h1>
                 <ul class="expenses-container" id="expensesContainer"></ul>
-                <a href="#">click on the dot to save</a>
+                <a href="#" class="expenseSave">click on the dot to save</a>
                 <div class="addIcon">
                     <span id="add-expense" class="material-symbols-outlined plusIcon">add</span>
                 </div>
@@ -180,40 +180,94 @@
                     <span id="add-goal" class="material-symbols-outlined plusIcon">add</span>
                 </div>
             </div>
+</main>
+<!-- RIGHT SECTION -->
+<div class="right-section">
+    <div class="nav">
+        <button id="menu-btn">
+            <span class="material-symbols-outlined">
+                menu
+                </span>
+        </button>
+<div class="dark-mode">
+    <span class="material-symbols-outlined active">
+        light_mode
+        </span>
+        <span class="material-symbols-outlined">
+            dark_mode
+            </span>        
+</div>  
 
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    var addButton = document.getElementById('add-expense');
-                    var goalButton = document.getElementById('add-goal');
+<div class="profile">
+    <div class="info">
+        <img class="main-pic" id="mainAvatar" src="/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black-thumbnail-removebg-preview.png" onclick="toggleMenu()">
+        <!-- Rest of your content -->
+        <div class="sub-menu-div" id="subMenu">
+            <div class="user-info">
+                <img class="hidden-pic" id="avatar" src="/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black-thumbnail-removebg-preview.png">
+                <h2><%= name %></h2>
+            </div>
+            <a href="#" id="profileLink">
+                <span class="material-symbols-outlined">edit</span>
+                <p>Choose Profile Picture</p>
+                <span class="arrow">></span>
+            </a>
+            <input type="file" id="profileImage" style="display: none;">
+            <a href="#" class="sub-menu-link">
+                <span class="material-symbols-outlined">update</span>
+                <p>Update Balance</p>
+                <span class="arrow">></span>
+            </a>
+            <!-- Your submenu content -->
+        </div>
+    </div>
+</div>
+</div>
+<!-- END OF NAVBAR -->
+<div class="ad">
+    <div class="adlines">
+        <h1>WANT TO SEE YOURSELF IN GREATER HEIGHTS?</h1>
+        <h2>INVEST NOW!</h2>
+    </div>
+<a href="/prime">View Plans</a>
+</div>
 
-                    addButton.addEventListener('click', function () {
-                        var container = document.getElementById('expensesContainer');
-                        var noCards = document.getElementById('no-cards-msg');
+</div>
+</div>
 
-                        if (noCards) {
-                            noCards.remove();
-                        }
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+         var addButton = document.getElementById('add-expense');
+        var goalButton = document.getElementById('add-goal');
 
-                        var card = createExpenseCard();
-                        container.appendChild(card);
-                        card.querySelector('input').focus();
-                    });
+    addButton.addEventListener('click', function () {
+    var container = document.getElementById('expensesContainer');
+     var noCards = document.getElementById('no-cards-msg');
 
-                    goalButton.addEventListener('click', function () {
-                        var container = document.getElementById('goal-items');
-                        var nogoalCards = document.getElementById('no-goal-cards-msg');
+        if (noCards) {
+                        noCards.remove();
+        }
 
-                        if (nogoalCards) {
-                            nogoalCards.remove();
-                        }
-
-                        var card = createGoalCard();
-                        container.appendChild(card);
-                        card.querySelector('input[type="number"]').focus();
-                    });
-
-                    loadCards();
+                    var card = createExpenseCard();
+                    container.appendChild(card);
+                    card.querySelector('input').focus();
                 });
+
+                goalButton.addEventListener('click', function () {
+                    var container = document.getElementById('goal-items');
+                    var nogoalCards = document.getElementById('no-goal-cards-msg');
+
+                    if (nogoalCards) {
+                        nogoalCards.remove();
+                    }
+
+                    var card = createGoalCard();
+                    container.appendChild(card);
+                    card.querySelector('input[type="number"]').focus();
+                });
+
+                loadCards();
+            });
 
                 function createExpenseCard(data = {}) {
                     var card = document.createElement('li');
@@ -260,27 +314,19 @@
                     card.setAttribute('id', `goalCard_${id}`);
 
                     card.innerHTML = `
-                        <input type="range" class="budgetProgressBar" id="budgetSlider" min="0" max="10000" value="${progress}">
-                        <input type="number" id="userBudget" placeholder="Enter Budget" min="0" value="${budget}">
-                        <input type="number" id="userSavings" placeholder="Enter Savings" min="0" value="${savings}">
-                        <div class="slider-value"><span id="sliderValue">${progress}</span></div>
+                        <input type="number" id="userBudget" placeholder="Enter Budget" value="${budget}">
+                        <input type="number" id="userSavings" placeholder="Enter Savings" value="${savings}">
                         <p class="goal-date">Date: ${date}</p>
-                        <span class="material-symbols-outlined bin" onclick="deleteGoalCard(${id})">delete</span>
+                        <span class="material-symbols-outlined bin2" onclick="deleteGoalCard(${id})">delete</span>
                     `;
 
                     var budgetInput = card.querySelector('#userBudget');
                     var savingsInput = card.querySelector('#userSavings');
-                    var slider = card.querySelector('#budgetSlider');
-                    var sliderValue = card.querySelector('#sliderValue');
 
                     budgetInput.addEventListener('blur', function () {
                         saveGoalCard(card, id);
                     });
                     savingsInput.addEventListener('blur', function () {
-                        saveGoalCard(card, id);
-                    });
-                    slider.addEventListener('input', function () {
-                        sliderValue.textContent = slider.value;
                         saveGoalCard(card, id);
                     });
 
@@ -293,7 +339,6 @@
                         id: id,
                         budget: card.querySelector('#userBudget').value,
                         savings: card.querySelector('#userSavings').value,
-                        progress: card.querySelector('#budgetSlider').value,
                         date: date
                     };
                     localStorage.setItem(`goalCard_${id}`, JSON.stringify(cardData));
@@ -349,13 +394,46 @@
 
                     if (!hasGoals) {
                         var nogoalCardsMsg = document.createElement('p');
-                        nogoalCardsMsg.id = 'no-goal-cards-msg';
-                        nogoalCardsMsg.innerHTML =`If you’re saving, you’re succeeding.” - Steve Burkholder.        Click on the '+' icon to open the door to a better future.`;
-                        goalContainer.appendChild(nogoalCardsMsg);
+            nogoalCardsMsg.id = 'no-goal-cards-msg';
+            nogoalCardsMsg.innerHTML = `“If you’re saving, you’re succeeding.” - Steve Burkholder.<br>Click on the '+' icon to open the door to a better future.`;
+            goalContainer.appendChild(nogoalCardsMsg);
                     }
                 }
-                loadExpenses();
+    loadExpenses();
     loadGoals();
+    let subMenu = document.getElementById('subMenu');
+
+function toggleMenu() {
+    subMenu.classList.toggle('open-menu');
+}
+
+const profileLink = document.getElementById('profileLink');
+    const profileImageInput = document.getElementById('profileImage');
+    const avatarImage = document.getElementById('avatar');
+    const mainavatarImage = document.getElementById('mainAvatar');
+
+    profileLink.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent the link from navigating
+        profileImageInput.click(); // Trigger the hidden file input
+    });
+
+    profileImageInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                mainavatarImage.src = avatarImage.src = e.target.result;
+                localStorage.setItem('imgData', e.target.result); // Save image data
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Load stored image data on page load
+    const storedImgData = localStorage.getItem('imgData');
+    if (storedImgData) {
+        mainavatarImage.src = avatarImage.src = storedImgData;
+    }    
             </script>
         </main>
     </div>
