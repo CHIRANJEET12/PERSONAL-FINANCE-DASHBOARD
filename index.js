@@ -36,7 +36,7 @@ mongoose.connect(mongoUri, {
 
 // Routes
 app.use("", require("./routes/user"));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'Public')));
 
 // Start the server
 app.listen(port, () => {
