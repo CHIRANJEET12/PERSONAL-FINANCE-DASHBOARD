@@ -4,11 +4,13 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
+require('dotenv').config();
+
 
 const jwtpassword = "12345";
 
 const app = express();
-const port = 3222;
+const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
