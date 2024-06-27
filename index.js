@@ -1,10 +1,11 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const jwtpassword = "12345";
-const path = require("path")
 const bodyParser = require("body-parser");
+const path = require("path");
+
+const jwtpassword = "12345";
 
 const app = express();
 const port = 3222;
@@ -19,10 +20,17 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 // Database
-mongoose.connect("mongodb://localhost:27017/bank")
-.then(()=>{
-  console.log("connected");
+const mongoUri = "mongodb+srv://23052878:uMkS8tfUrtCIeUPW@bank.oxyupmx.mongodb.net/?retryWrites=true&w=majority&appName=bank";
+mongoose.connect(mongoUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
+.then(() => {
+  console.log("connected to MongoDB Atlas");
+})
+.catch(err => {
+  console.error("Failed to connect to MongoDB Atlas", err);
+});
 
 // Routes
 app.use("", require("./routes/user"));
@@ -30,5 +38,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+  console.log(`Server running on http://localhost:${port}`);
 });
