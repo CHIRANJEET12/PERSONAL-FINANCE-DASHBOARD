@@ -20,11 +20,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #FFFFFF;
-      padding: 10px 20px;
+      background-color: #ffffff;
+      margin-left: 0px;
+      padding-right: 30px;
+      padding: 1px 10px;
       border-radius: 8px;
       margin-top: 300px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -33,26 +35,33 @@
       align-items: center;
       border: none;
       background: none;
+      color: #0056b3;
       cursor: pointer;
       padding: 0;
       transition: color 0.3s ease;
     }
 
     .lastChild button:hover {
-      color: #0056b3;
+      color: #248eff;
     }
 
     .lastChild .material-symbols-outlined {
       font-size: 24px;
-      margin-right: 8px;
-      color: #333;
+      margin-right: 0px;
+      color: #444f8f;
+      transition: color 0.3s ease;
+    }
+    .lastChild .material-symbols-outlined:hover {
+      font-size: 24px;
+      margin-right: 0px;
+      color: #000000;
       transition: color 0.3s ease;
     }
 
     .lastChild h3 {
       font-size: 18px;
       margin-top: -20px;
-      color: #333;
+      color: #36406a;
       transition: color 0.3s ease;
     }
 
@@ -62,8 +71,8 @@
     }
 
     .lastChild:hover {
-      background-color: #e0e0e0;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      background-color: #e0e0e000;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0);
     }
 
         .slider-value {
@@ -189,14 +198,15 @@
                 menu
                 </span>
         </button>
-<div class="dark-mode">
-    <span class="material-symbols-outlined active">
-        light_mode
-        </span>
-        <span class="material-symbols-outlined">
-            dark_mode
-            </span>        
-</div>  
+        <div class="dark-mode">
+            <span id="light-mode-icon" class="material-symbols-outlined active">
+                light_mode
+            </span>
+            <span id="dark-mode-icon" class="material-symbols-outlined">
+                dark_mode
+            </span>
+        </div>
+        
 
 <div class="profile">
     <div class="info">
@@ -213,7 +223,7 @@
                 <span class="arrow">></span>
             </a>
             <input type="file" id="profileImage" style="display: none;">
-            <a href="#" class="sub-menu-link">
+            <a href="/balance" class="sub-menu-link">
                 <span class="material-symbols-outlined">update</span>
                 <p>Update Balance</p>
                 <span class="arrow">></span>
@@ -434,6 +444,29 @@ const profileLink = document.getElementById('profileLink');
     if (storedImgData) {
         mainavatarImage.src = avatarImage.src = storedImgData;
     }    
+
+    const darkModeToggle = document.querySelector('.dark-mode');
+const root = document.documentElement;
+
+darkModeToggle.addEventListener('click', () => {
+    if (root.classList.contains('dark-mode-variables')) {
+        root.classList.remove('dark-mode-variables');
+    } else {
+        root.classList.add('dark-mode-variables');
+    }
+
+    // Toggle active state for the dark mode switch
+    const spans = darkModeToggle.querySelectorAll('span');
+    spans.forEach(span => span.classList.toggle('active'));
+});
+
+
+
+
+
+
+
+
             </script>
         </main>
     </div>

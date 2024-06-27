@@ -167,7 +167,7 @@ router.post("/pin", authenticateToken, async (req, res) => {
     }
 });
 
-router.post("/entre", authenticateToken, async (req, res) => {
+router.post("/entre", async (req, res) => {
     const { pin } = req.body;
     try {
         const pinvalid = await Pin.findOne({ pin });
