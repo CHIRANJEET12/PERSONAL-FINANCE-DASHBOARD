@@ -29,7 +29,7 @@
                 <h2>FinTrack</h2>
                 <a href="#" class="close" id="close-btn">
                     <span class="material-symbols-outlined">
-                        close
+                        menu
                     </span>
                 </a>
             </div>
@@ -186,6 +186,13 @@
 </div>
 
 <script>
+
+    document.getElementById('close-btn').addEventListener('click', function() {
+        document.querySelector('aside .sidebar').classList.toggle('open');
+    });
+
+
+
     document.addEventListener('DOMContentLoaded', function () {
          var addButton = document.getElementById('add-expense');
         var goalButton = document.getElementById('add-goal');

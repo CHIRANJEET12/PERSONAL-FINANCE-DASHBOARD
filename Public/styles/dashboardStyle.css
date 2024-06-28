@@ -935,3 +935,211 @@ transition: all 0.3s ease;
     border-radius: var(--border-radius-1);
 }
 
+/* Responsive design for mobile devices */
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* Make the layout single column */
+        width: 117%;
+    }
+
+    aside {
+        width: 100%; /* Full width for the sidebar */
+        height: auto; /* Adjust height */
+    }
+
+    aside .toggle .close {
+        display: block; /* Show the close button on mobile */
+    }
+
+    aside .sidebar {
+        position: fixed; /* Fix the sidebar position */
+        top: 0;
+        left: -100%; /* Hide the sidebar initially */
+        width: 250px; /* Set the sidebar width */
+        height: 100%; /* Full height */
+        transition: left 0.3s ease; /* Smooth transition for opening/closing */
+        z-index: 1000; /* Ensure the sidebar is on top */
+    }
+
+    aside .sidebar.open {
+        left: 0; /* Show the sidebar when open */
+    }
+
+    main {
+        margin-top: 0; /* Adjust margin for main content */
+    }
+    main .share {
+        background-color: #a5ea69;
+        color: #fff;
+        border-radius: 20px;
+        padding: 30px;
+        color: white;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 125vw;
+        height: 45vw;
+    }
+    .card {
+        height: 24vh;
+    }
+    .balance{
+        height: 15vh;
+    }
+    
+main .expense-tracker .expenseCard p {
+    position: relative;
+    margin-left: 5%;
+    top: 30%;
+    left: -5%;
+    font-size: 10px;
+    color: #fff;
+}
+main .expense-tracker .bin {
+    position: relative;
+    left: -1%;
+    top: 14%;
+    color: #fff;
+}
+.ad {
+    padding: var(--card-padding);
+    background-color: var(--color-white);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    gap: 1.4rem;
+    transition: all 0.3s ease;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    top: -20%;
+    right: -19%;
+    width: 400px;
+    padding: 12px;
+    background: linear-gradient(35deg, rgb(255, 199, 192), rgb(0, 255, 110), rgb(226, 192, 255), rgb(0, 255, 234), rgb(225, 255, 0));
+    height: 35vh;
+    z-index: -2;
+}
+.right-section .profile .main-pic {
+    width: 2vw;
+    height: 4vh;
+    cursor: pointer;
+    position: relative;
+    left: 60%;
+    width: 9vw;
+    height: 4vh;
+    cursor: pointer;
+    position: relative;
+    left: 60%;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+}
+.right-section .profile .sub-menu-div {
+    position: absolute;
+    top: 62%;
+    right: -36%;
+
+}
+
+.right-section .nav {
+    display: flex;
+    position: relative;
+    justify-content: baseline;
+    top: -372%;
+    gap: 2rem;
+}
+    .card, .balance, .share, .expense-tracker, .goals {
+        width: 100%; /* Full width for cards and other elements */
+        margin-top: 1rem; /* Add some top margin */
+
+    }
+
+    main .all-finDtls {
+        grid-template-columns: 1fr; /* Single column layout for details */
+    }
+}
+
+/* Additional styles for other breakpoints */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        grid-template-columns: 8rem auto 20rem; /* Adjust column widths */
+    }
+
+    .card, .balance, .share, .expense-tracker, .goals {
+        width: 100%; /* Full width for cards and other elements */
+        margin-top: 1rem; /* Add some top margin */
+    }
+
+    main .all-finDtls {
+        grid-template-columns: 1fr 1fr; /* Two column layout for details */
+    }
+}
+
+/* Close button functionality for sidebar */
+#close-btn {
+    cursor: pointer;
+}
+
+#close-btn:hover {
+    color: var(--color-primary);
+}
+
+@media screen and (max-width: 765px) {
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        width: 100%;
+    }
+    main .goals #goal-items .goal-date {
+        color: #333;
+        font-size: 11px;
+        position: relative;
+        left: -20%;
+        top: 25%;
+    }
+    span.material-symbols-outlined.bin2 {
+        color: #181a1e;
+        position: relative;
+        top: 37%;
+        left: -4%;
+    }
+
+    .card {
+        width: 90%;
+        max-width: 400px;
+        margin: 1rem 0;
+        height: auto;
+    }
+
+    .balance {
+        width: 90%;
+        max-width: 400px;
+        margin: 1rem 0;
+        height: auto;
+    }
+
+    .share {
+        background-color: #a5ea69;
+        color: #fff;
+        border-radius: 20px;
+        padding: 1rem;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
+        margin: 1rem 0;
+        height: auto;
+    }
+
+
+
+    main .all-finDtls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 213%;
+        max-width: 559px;
+        margin: 1rem 0;
+    }
+}
