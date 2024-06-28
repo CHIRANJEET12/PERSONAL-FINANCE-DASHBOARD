@@ -28,7 +28,7 @@
             <div class="toggle">
                 <h2>FinTrack</h2>
                 <a href="#" class="close" id="close-btn">
-                    <span class="material-symbols-outlined">
+                    <span class="material-symbols-outlined menu">
                         menu
                     </span>
                 </a>
@@ -132,48 +132,46 @@
             </div>
 </main>
 <!-- RIGHT SECTION -->
-<div class="right-section">
-    <div class="nav">
-        <button id="menu-btn">
-            <span class="material-symbols-outlined">
-                menu
-                </span>
-        </button>
-        <div class="dark-mode">
-            <span id="light-mode-icon" class="material-symbols-outlined active">
-                light_mode
+<div class="nav">
+    <button id="menu-btn">
+        <span class="material-symbols-outlined">
+            menu
             </span>
-            <span id="dark-mode-icon" class="material-symbols-outlined">
-                dark_mode
-            </span>
-        </div>
-        
-
-<div class="profile">
-    <div class="info">
-        <img class="main-pic" id="mainAvatar" src="/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black-thumbnail-removebg-preview.png" onclick="toggleMenu()">
-        <div class="sub-menu-div" id="subMenu">
-            <div class="user-info">
-                <img class="hidden-pic" id="avatar" src="/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black-thumbnail-removebg-preview.png">
-                <h2><%= name %></h2>
+    </button>
+    <div class="dark-mode">
+        <span id="light-mode-icon" class="material-symbols-outlined active">
+            light_mode
+        </span>
+        <span id="dark-mode-icon" class="material-symbols-outlined">
+            dark_mode
+        </span>
+    </div>
+    <div class="profile">
+        <div class="info">
+            <img class="main-pic" id="mainAvatar" src="/styles/pngegg (16).png" onclick="toggleMenu()">
+            <div class="sub-menu-div" id="subMenu">
+                <div class="user-info">
+                    <img class="hidden-pic" id="avatar" src="/Finance_Project/Public/styles/pngegg (16).png">
+                    <h2><%= name %></h2>
+                </div>
+                <a href="#" id="profileLink">
+                    <span class="material-symbols-outlined">edit</span>
+                    <p>Choose Profile Picture</p>
+                    <span class="arrow">></span>
+                </a>
+                <input type="file" id="profileImage" style="display: none;">
+                <a href="/balance" class="sub-menu-link">
+                    <span class="material-symbols-outlined">update</span>
+                    <p>Update Balance</p>
+                    <span class="arrow">></span>
+                </a>
+                <!-- Your submenu content -->
             </div>
-            <a href="#" id="profileLink">
-                <span class="material-symbols-outlined">edit</span>
-                <p>Choose Profile Picture</p>
-                <span class="arrow">></span>
-            </a>
-            <input type="file" id="profileImage" style="display: none;">
-            <a href="/balance" class="sub-menu-link">
-                <span class="material-symbols-outlined">update</span>
-                <p>Update Balance</p>
-                <span class="arrow">></span>
-            </a>
-            <!-- Your submenu content -->
         </div>
     </div>
-</div>
-</div>
-<!-- END OF NAVBAR -->
+    </div>
+    <!-- END OF NAVBAR -->
+<div id="fadeshow1" class="right-section">
 <div class="ad">
     <div class="adlines">
         <h1>WANT TO SEE YOURSELF IN GREATER HEIGHTS?</h1>
@@ -407,14 +405,7 @@ darkModeToggle.addEventListener('click', () => {
     spans.forEach(span => span.classList.toggle('active'));
 });
 
-
-
-
-
-
-
-
-            </script>
+ </script>
         </main>
     </div>
 </body>
