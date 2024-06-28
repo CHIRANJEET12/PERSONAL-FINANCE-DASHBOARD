@@ -16,65 +16,6 @@
             cursor: pointer;
             margin-top: 12px;
         }
-        .lastChild {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #ffffff;
-      margin-left: 0px;
-      padding-right: 30px;
-      padding: 1px 10px;
-      border-radius: 8px;
-      margin-top: 300px;
-      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .lastChild button {
-      display: flex;
-      align-items: center;
-      border: none;
-      background: none;
-      color: #0056b3;
-      cursor: pointer;
-      padding: 0;
-      transition: color 0.3s ease;
-    }
-
-    .lastChild button:hover {
-      color: #248eff;
-    }
-
-    .lastChild .material-symbols-outlined {
-      font-size: 24px;
-      margin-right: 0px;
-      color: #444f8f;
-      transition: color 0.3s ease;
-    }
-    .lastChild .material-symbols-outlined:hover {
-      font-size: 24px;
-      margin-right: 0px;
-      color: #000000;
-      transition: color 0.3s ease;
-    }
-
-    .lastChild h3 {
-      font-size: 18px;
-      margin-top: -20px;
-      color: #36406a;
-      transition: color 0.3s ease;
-    }
-
-    .lastChild button:hover .material-symbols-outlined,
-    .lastChild button:hover h3 {
-      color: #0056b3;
-    }
-
-    .lastChild:hover {
-      background-color: #e0e0e000;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0);
-    }
-
         .slider-value {
             color: black;
         }
@@ -117,7 +58,7 @@
                     </span>
                     <h3>Settings</h3>
                 </a>
-                <form  action="/logout" method="POST">
+                <form class="logout" action="/logout" method="POST">
                     <button type="submit" class="lastChild">
                         <span class="material-symbols-outlined">logout</span>
                         <h3>Logout</h3>
@@ -211,7 +152,6 @@
 <div class="profile">
     <div class="info">
         <img class="main-pic" id="mainAvatar" src="/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black-thumbnail-removebg-preview.png" onclick="toggleMenu()">
-        <!-- Rest of your content -->
         <div class="sub-menu-div" id="subMenu">
             <div class="user-info">
                 <img class="hidden-pic" id="avatar" src="/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black-thumbnail-removebg-preview.png">
