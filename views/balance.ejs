@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Balance entry</title>
+    <link rel="stylesheet" href="/styles/balance.css">
     <style>
         body {
+          background-image: url(/styles/balance.jpg);
+          background-repeat: no-repeat;
+          background-size: cover;
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
   color: #333;
@@ -20,10 +24,11 @@
 }
 
 .form-label {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 22px;
+  font-weight: 700;
   margin-bottom: 10px;
   display: block;
+  color: #fff;
 }
 
 .form-control {
@@ -51,7 +56,7 @@
 
 a {
   display: inline-block;
-  color: #007bff;
+  color: #fff;
   text-decoration: none;
   margin-top: 10px;
   font-size: 16px;
@@ -65,11 +70,11 @@ a:hover {
     </style>
 </head>
 <body>
-    <form action="/balance" method="POST">
-        <label for="balance" class="form-label">Enter Balance</label>
+    <form class="form-balance" action="/balance" method="POST">
+        <label for="balance" class="form-label">Deposit Balance</label>
         <input type="password" class="form-control" id="balance" name="balance" aria-describedby="emailHelp" required>
-        <button type="submit" class="btn btn-primary ">Record the balance</button>
-        <a href="/">generate through details</a>
+        <button type="submit" class="btn btn-primary depositblnc">Record the balance</button>
+        <a href="/" class="dtls">Generate through details</a>
       </form>
     
 </body>
