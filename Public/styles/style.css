@@ -4,6 +4,11 @@ body {
 }
 
 body {
+  background-image: url(/styles/pexels-mikhail-nilov-8297016.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -19,6 +24,7 @@ body {
   padding: 15px;
   margin: auto;
 }
+
 .form-signin .checkbox {
   font-weight: 400;
 }
@@ -45,6 +51,7 @@ body {
 
 .signUpAlert{
     position: relative;
-    top: 10px;
+    top: 20px;
+    color: #ffffff;
+    font-size: 20px;
 }
-

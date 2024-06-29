@@ -10,6 +10,10 @@
           background-image: url(/styles/balance.jpg);
           background-repeat: no-repeat;
           background-size: cover;
+          background-attachment: fixed;
+          background-position: center;
+          filter: blur(8px); 
+          -webkit-filter: blur(8px);
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
   color: #333;
@@ -55,7 +59,8 @@
 }
 
 a {
-  display: inline-block;
+  position: relative;
+  top: 20%;
   color: #fff;
   text-decoration: none;
   margin-top: 10px;
@@ -72,9 +77,9 @@ a:hover {
 <body>
     <form class="form-balance" action="/balance" method="POST">
         <label for="balance" class="form-label">Deposit Balance</label>
-        <input type="password" class="form-control" id="balance" name="balance" aria-describedby="emailHelp" required>
+        <input type="password" class="form-control" id="balance" name="balance" aria-describedby="emailHelp" required autofocus>
         <button type="submit" class="btn btn-primary depositblnc">Record the balance</button>
-        <a href="/" class="dtls">Generate through details</a>
+        <a href="/" class="dtls">Already Deposited?</a>
       </form>
     
 </body>

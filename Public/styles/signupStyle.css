@@ -4,6 +4,11 @@ body {
 }
 
 body {
+  background-image: url(/styles/pexels-ivan-samkov-7621140.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
