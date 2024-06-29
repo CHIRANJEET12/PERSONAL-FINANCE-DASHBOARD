@@ -1113,7 +1113,7 @@ main .goals {
 }
 }
 
-@media screen and (max-width:360px) {
+@media (min-width:360px) and (max-width:880px){
 
     .container{
         width: 80%;
@@ -1162,10 +1162,10 @@ aside .toggle h2{
         left: 175px;
     }
      
-     main .balance{
+    main .balance {
         height: 90%;
-     }
-    
+        width: 300px;
+    }
     main .share{
         width: 314px; 
     }
@@ -1178,28 +1178,90 @@ aside .toggle h2{
      main .expense-tracker {
         position: relative;
         width: 98vw;
-        left: -67vw;
+        left: -62vw;
         z-index: 4;
     }
 
     main .goals{
         position: relative;
         width: 98vw;
-        left: -67vw; 
+        left: -62vw;
         z-index: 4;   
     }
 
     .right-section {
         width: 92vw;
-        height: 51vh;
+        height: 39vh;
         position: relative;
         top: -19%;
-        left: -19%;
+        left: -14%;
     }
 
      .nav {
         position: relative;
         left: -133vw;
     }
-
+    main .expense-tracker .expenseCard p {
+        position: relative;
+        margin-left: 5%;
+        top: 32%;
+        left: -10%;
+        font-size: 9px;
+        color: #fff;
+    }
+    main .expense-tracker .expenseCard input {
+        position: relative;
+        left: 15%;
+        font-size: 14px;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: #fff;
+    }
+    main .expense-tracker .expenseCard .redIcon {
+        border-radius: 100%;
+        width: 15px;
+        height: 15px;
+        background-color: #fff;
+        position: relative;
+        top: 42%;
+        left: 10%;
+    }
+    main .expense-tracker .expenseCard {
+        display: flex;
+        border-radius: 10px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        width: 107%;
+        height: 8vh;
+        background-color: #f44336;
+    }
+    main .expense-tracker .bin {
+        position: relative;
+        left: -3%;
+        top: 14%;
+        color: #fff;
+    }
+    main .goals #goal-items .goal-date {
+        color: #333;
+        font-size: 7px;
+        position: relative;
+        top: 42%;
+        left: -23px;
+    }
+    span.material-symbols-outlined.bin2 {
+        color: #181a1e;
+        position: relative;
+        top: 29%;
+        left: 0%;
+    }
+    main .goals #goal-items input {
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 19px;
+        position: relative;
+        width: 110px;
+        left: 6px;
+    }
 }
