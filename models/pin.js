@@ -1,21 +1,19 @@
 const mongoose = require("mongoose");
 
-// Define the user schema
+// Define the pin schema
 const PinSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true 
     },
-    pin:{
+    pin: {
         type: String,
-        required: true,
-        unique: true
+        required: true 
     }
-
 });
 
-// Create a User model based on the user schema
+// Create a Pin model based on the pin schema
 const Pin = mongoose.model("Pin", PinSchema);
 
 module.exports = Pin;
