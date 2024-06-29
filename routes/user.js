@@ -146,12 +146,19 @@ router.post("/balance", authenticateToken, async (req, res) => {
         res.status(500).send("Error in balancing");
     }
 });
-
 router.post("/pin", authenticateToken, async (req, res) => {
     const { email, pin1, pin2, pin3, pin4, pin5, pin6 } = req.body;
     const pin = `${pin1}${pin2}${pin3}${pin4}${pin5}${pin6}`;
 
     try {
+        const existingPin = await Pin.findOne({ pin });
+
+        if (existingPin) {
+            // Generate and suggest an alternative PIN
+            const suggestedPin = generateRandomPin(); // Implement your own logic to generate a new PIN
+            return res.status(400).send(`This PIN is already in use. Please choose another. You may try PIN: ${suggestedPin} `);
+        }
+
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(404).send("User not found");
@@ -162,27 +169,42 @@ router.post("/pin", authenticateToken, async (req, res) => {
 
         res.render("balance");
     } catch (error) {
-        console.error("Error in pin-validation:", error);
-        res.status(500).send("Error in pin-validation. Please try again later.");
+        console.error("Error in saving PIN:", error);
+        res.status(500).send("Error in saving PIN. Please try again later.");
     }
 });
+
+// Function to generate a random PIN for suggestion (example implementation)
+function generateRandomPin() {
+    let randomPin = "";
+    for (let i = 0; i < 6; i++) {
+        randomPin += Math.floor(Math.random() * 10);
+    }
+    return randomPin;
+}
+
+
+
 
 router.post("/entre", async (req, res) => {
     const { pin } = req.body;
+    
     try {
-        const pinvalid = await Pin.findOne({ pin });
+        // Find the PIN in the database
+        const pinRecord = await Pin.findOne({ pin });
 
-        if (!pinvalid) {
-            return res.status(404).send("Incorrect Pin");
-        } else {
-            console.log("Valid");
-            res.redirect("/dashboard");
+        if (!pinRecord) {
+            return res.status(404).send("Incorrect PIN");
         }
+
+        // Redirect to dashboard upon successful PIN validation
+        res.redirect("/dashboard");
     } catch (error) {
-        console.error("Error in pin-validation:", error);
-        return res.status(500).send("Error in pin-validation. Please try again later.");
+        console.error("Error in PIN validation:", error);
+        return res.status(500).send("Error in PIN validation. Please try again later.");
     }
 });
+
 
 
 
