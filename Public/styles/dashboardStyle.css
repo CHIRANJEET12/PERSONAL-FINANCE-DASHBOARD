@@ -1155,6 +1155,7 @@ aside .toggle h2{
     }
     main .card{
         width: 314px;
+        height: 58vw;
      }
      
      main .card .card-header img{
@@ -1182,24 +1183,31 @@ aside .toggle h2{
         z-index: 4;
     }
 
-    main .goals{
+    main .goals {
         position: relative;
         width: 98vw;
-        left: -67vw; 
-        z-index: 4;   
+        left: -65vw;
+        z-index: 4;
     }
 
     .right-section {
         width: 92vw;
         height: 51vh;
         position: relative;
-        top: -19%;
-        left: -19%;
+        top: -16%;
+        left: -20%;
     }
 
      .nav {
         position: relative;
         left: -133vw;
     }
-
+    div#subMenu {
+        position: relative;
+        left: -65vw;
+    }
+    a.expenseSave{
+        position: relative;
+        left: 18vw;
+    }
 }
