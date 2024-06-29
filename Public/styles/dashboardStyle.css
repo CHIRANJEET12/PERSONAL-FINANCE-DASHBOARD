@@ -34,6 +34,9 @@ IN CSS ========  */
     --color-light: rgba(0, 0, 0, 0.4);
     --box-shadow: 0 2rem 3rem var(--color-light);
 }
+html, body {
+    overflow-x: hidden;
+}
 
 *{
     margin: 0;
@@ -1153,6 +1156,7 @@ aside .toggle h2{
         position: relative;
         left: -234px;
     }
+    
     main .card{
         width: 314px;
      }
