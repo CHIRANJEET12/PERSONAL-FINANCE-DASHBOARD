@@ -10,17 +10,10 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-image: url(/styles/pexels-shvetsa-4482900.jpg);
+      background-image: url(/pexels-davidmcbee-730547.jpg);
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-    }
-
-    .container{
-      position: relative;
-      top: 30%;
     }
 
     .input-group-text {
@@ -40,6 +33,7 @@
       outline: none;
       border-color: #80bdff;
     }
+
     .email-input {
       max-width: 300px;
       margin: 20px auto;
@@ -52,39 +46,29 @@
 
     .btn-links a {
       margin-right: 10px;
-      display: flex;
-      flex-direction: column;
     }
     .hide{
-      color: #036df7;
+      color: #ffffff;
+      background-color: #3891ff;
+      padding: 10px 10px 10px;
+      border-radius: 4px;
     }
     #emailHelp{
       color: #ffffff;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      font-weight: 700;
-      font-size: 20px;
-      text-align: center;
-    }
-    label{
-      color: #ffffff;
-      font-weight: 700;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      position: relative;
-      left: 18%;
     }
   </style>
 </head>
 
 <body>
   <div class="container text-center mt-4">
-    <span class="input-group-text mx-auto d-inline-block">SET PIN</span>
+    <span class="input-group-text mx-auto d-inline-block">ENTER PIN</span>
   </div>
 
   <form action="/pin" method="POST" class="email-input">
     <div class="mb-3">
-      <label for="email" class="form-label">Enter email address to verify</label>
+      <label for="email" class="form-label">Email address</label>
       <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
-      <div id="emailHelp" class="form-text">You'll never share your PIN with anyone else.</div>
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
 
     <div class="pin-boxes d-flex justify-content-center mb-3">
@@ -99,8 +83,8 @@
 
     <button type="submit" class="btn btn-primary d-block mx-auto">Generate New MPIN</button>
     <div class="btn-links">
-      <a class="hide" href="/enter_pin">Already have PIN?</a>
-      <a class="hide" href="/balance">Want to Deposit Money?</a>
+      <a class="hide" href="/enter_pin">Already have it</a>
+      <a class="hide" href="/balance">Balance</a>
     </div>
   </form>
 
