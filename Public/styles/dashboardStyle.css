@@ -266,9 +266,6 @@ main .all-finDtls{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
-}
-
-main .all-finDtls{
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
     margin-top: 1rem;
@@ -616,24 +613,22 @@ span.material-symbols-outlined.bin2 {
     justify-content: center;
 }
 
-.right-section .dark-mode span.active{
+.dark-mode span.active{
     background-color: var(--color-primary);
     color: white;
     border-radius: var(--border-radius-1);
 }
 
-.right-section .profile{
+.profile{
     width: 30%;
 }
 
-.right-section .profile .main-pic{
-    width: 2vw;
-    height: 4vh;
+.profile .main-pic{
+    width: 1.5rem;
+    height: 1.6rem;
     cursor: pointer;
     position: relative;
     left: 60%;
-    width: 2vw;
-    height: 4vh;
     cursor: pointer;
     position: relative;
     left: 60%;
@@ -641,24 +636,33 @@ span.material-symbols-outlined.bin2 {
     border: 2px solid var(--color-primary);
 }
 
-.right-section .profile .sub-menu-div{
-    position: absolute;
-    top: 10%;
+.profile .sub-menu-div{
+    position: relative;
+    left: -254px;
+    top: 7%;
     right: 5%;
     width: 320px;
+    background: #fff;
+    /* padding: 20px; */
+    margin: 10px;
+    border-radius: 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+    z-index: 2;
 }
 
-.right-section .profile .sub-menu{
+.profile .sub-menu{
     background: #fff;
     padding: 20px;
     margin: 10px;
 }
 
-.right-section .profile .user-info{
+.profile .user-info{
     align-items: center;
 }
 
-.right-section .profile .user-info h2{
+.profile .user-info h2{
 font-weight: 700;
 color: #181a1e;
 }
@@ -668,22 +672,19 @@ display: flex;
 margin-top: 15px;
 }
 
-.right-section{
+.nav{
     margin-top: 1.4rem;
     width: 50%;
-}
-
-.right-section .nav{
     display: flex;
-    justify-content: baseline;
+    justify-content: center;
     gap: 2rem; 
 }
 
-.right-section .nav button{
+.nav button{
     display: none;
 }
 
-.right-section .dark-mode{
+.dark-mode{
     background-color: var(--color-light);
     display: flex;
     justify-content: space-between;
@@ -696,8 +697,8 @@ margin-top: 15px;
     left: 20%;
 }
 
-.right-section .dark-mode span{
-    font-size: 1.2rem;
+.dark-mode span{
+    font-size: 1.6rem;
     width: 50%;
     height: 100%;
     display: flex;
@@ -705,48 +706,36 @@ margin-top: 15px;
     justify-content: center;
 }
 
-.right-section .dark-mode span.active{
+.dark-mode span.active{
     background-color: var(--color-primary);
     color: white;
     border-radius: var(--border-radius-1);
 }
 
-.right-section .profile{
+.profile{
     width: 30%;
 }
 
-.right-section .profile .sub-menu-div {
-    position: absolute;
-    top: 10%;
-    right: 5%;
-    width: 320px;
-    background: #fff;
-    /* padding: 20px; */
-    margin: 10px;
-    border-radius: 20px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s;
-}
 
-
-.right-section .profile .open-menu {
+.profile .open-menu {
     max-height:400px;
+    z-index: 2;
 }
 
-.right-section .profile .sub-menu{
+.profile .sub-menu{
     background: #fff;
     padding: 20px;
     margin: 10px;
 }
 
-.right-section .profile .user-info{
+.profile .user-info{
     align-items: center;
+    z-index: 2;
 }
 
-.right-section .profile .user-info .hidden-pic{
-width: 5vw;
-height: 9vh;
+.profile .user-info .hidden-pic{
+width: 2.6rem;
+height: 2.9rem;
 position: relative;
 top: 9px;
 left: 40%;
@@ -755,7 +744,7 @@ z-index: 2;
 }
 
 
-.right-section .profile .user-info h2{
+.profile .user-info h2{
 font-weight: 700;
 position: relative;
 left: 5%;
@@ -805,6 +794,7 @@ margin: 12px 0;
 transition: all 0.3s ease;
 position: relative;
 left: 5%;
+z-index: 2;
 }
 
 .sub-menu-link span{
@@ -830,39 +820,39 @@ left: 5%;
     color: var(--color-primary);
 }
 
-.ad{
-    padding: var(--card-padding);
-background-color: var(--color-white);
+.right-section{
+    margin-top: 3.8rem;
+    position: absolute;
+    right: 7px;
+    width: 13%;
+    background-color: var(--color-white);
 border-radius: var(--card-border-radius);
+    background:linear-gradient(35deg, rgb(255, 199, 192), rgb(0, 255, 110),rgb(226, 192, 255),rgb(0, 255, 234),rgb(225, 255, 0)); ;
+ height: 100vh;
+ box-shadow: var(--box-shadow);
+}
+
+.right-section .ad{
+position: relative;
+padding: var(--card-padding);
 margin-top: 1rem;
-box-shadow: var(--box-shadow);
-/* display: flex;
-justify-content: space-around;
-flex-wrap: wrap; */
 gap: 1.4rem;
 transition: all 0.3s ease;
-    color: #fff;
-    text-align: center;
-     padding: 12px;
-     background:linear-gradient(35deg, rgb(255, 199, 192), rgb(0, 255, 110),rgb(226, 192, 255),rgb(0, 255, 234),rgb(225, 255, 0)); ;
-     height: 100vh;
-     z-index: -2;
+color: #fff;
+text-align: center;
+ padding: 12px;
 }
 
-.ad:hover{
+.right-section:hover{
     box-shadow: none;
 }
-.ad .adlines{
+.right-section .ad .adlines{
     position: relative;
     top: 30px;
-    z-index:1;
 }
 
-.ad .adlines h1,h2{
-    z-index:1;
-}
 
-.ad a{
+.right-section .ad a{
     text-decoration: none;
     display: inline-block;
     color: #fff;
@@ -873,127 +863,72 @@ transition: all 0.3s ease;
     background: #181a1e;
     position: relative;
     top: 20px; 
-    
-}
-
-:root {
-    --color-primary: #6C9BCF;
-    --color-danger: #FF0060;
-    --color-success: #1B9C85;
-    --color-warning: #F7D060;
-    --color-white: #fff;
-    --color-info-dark: #7d8da1;
-    --color-dark: #363949;
-    --color-light: rgba(132, 139, 200, 0.18);
-    --color-dark-variant: #677483;
-    --color-background: #f6f6f9cc;
-
-    --card-border-radius: 2rem;
-    --border-radius-1: 0.4rem;
-    --border-radius-2: 1.2rem;
-
-    --card-padding: 1.8rem;
-    --padding-1: 1.2rem;
-
-    --box-shadow: 0 2rem 3rem var(--color-light);
-}
-
-.dark-mode-variables {
-    --color-background: #181a1e;
-    --color-white: #202528;
-    --color-dark: #edeffd;
-    --color-dark-variant: #a3bdcc;
-    --color-light: rgba(0, 0, 0, 0.4);
-    --box-shadow: 0 2rem 3rem var(--color-light);
-}
-
-.right-section .dark-mode {
-    background-color: var(--color-light);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 1.6rem;
-    width: 3.2rem;
-    cursor: pointer;
-    border-radius: var(--border-radius-1);
-    position: relative;
-    left: 20%;
-}
-
-.right-section .dark-mode span {
-    font-size: 1.2rem;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.right-section .dark-mode span.active {
-    background-color: var(--color-primary);
-    color: white;
-    border-radius: var(--border-radius-1);
 }
 
 /* Responsive design for mobile devices */
-@media screen and (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr; /* Make the layout single column */
-    }
 
-    aside {
-        width: 100%; /* Full width for the sidebar */
-        height: auto; /* Adjust height */
-    }
-
-    aside .toggle .close {
-        display: block; /* Show the close button on mobile */
-    }
-
-    aside .sidebar {
-        position: fixed; /* Fix the sidebar position */
-        top: 0;
-        left: -100%; /* Hide the sidebar initially */
-        width: 250px; /* Set the sidebar width */
-        height: 100%; /* Full height */
-        transition: left 0.3s ease; /* Smooth transition for opening/closing */
-        z-index: 1000; /* Ensure the sidebar is on top */
-    }
-
-    aside .sidebar.open {
-        left: 0; /* Show the sidebar when open */
-    }
-
-    main {
-        margin-top: 0; /* Adjust margin for main content */
-    }
-
-    .card, .balance, .share, .expense-tracker, .goals {
-        width: 100%; /* Full width for cards and other elements */
-        margin-top: 1rem; /* Add some top margin */
-    }
-
-    main .all-finDtls {
-        grid-template-columns: 1fr; /* Single column layout for details */
-    }
-}
 
 /* Additional styles for other breakpoints */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
+@media screen and (min-width:960px) and (max-width: 1104px) {
     .container {
-        grid-template-columns: 8rem auto 20rem; /* Adjust column widths */
+       grid-template-columns: 8rem auto 20rem; /*  Adjust column widths */
+    }
+ 
+    aside{
+        width: 15vw;
     }
 
-    .card, .balance, .share, .expense-tracker, .goals {
+    aside .sidebar{
+        height: 98vh;
+    }
+    main{
+        width: 500px;
+        position: relative;
+        left: 10%;
+    }
+
+    .right-section{
+        width: 20vw;
+        position: absolute;
+        right: 2%;
+
+    }
+
+    .card, .balance {
         width: 100%; /* Full width for cards and other elements */
         margin-top: 1rem; /* Add some top margin */
     }
 
-    main .all-finDtls {
-        grid-template-columns: 1fr 1fr; /* Two column layout for details */
+    main .balance{
+        height: 80%;
     }
-}
 
+    main .share{
+        width: 100%;
+    }
+
+    main .share i{
+        position: relative;
+        top: 5%;
+    }
+
+    main .all-finDtls {
+        grid-template-columns: 1fr;
+    }
+    
+    main .expense-tracker {
+        width: 32rem;
+        position: absolute;
+        left: -192px;
+    }
+
+    main .goals {
+        height: 29vh;
+        top: 616px;
+        width: 33rem;
+        position: absolute;
+        right: -236px;
+    }
 /* Close button functionality for sidebar */
 #close-btn {
     cursor: pointer;
@@ -1002,4 +937,269 @@ transition: all 0.3s ease;
 #close-btn:hover {
     color: var(--color-primary);
 }
+}
+/* @media screen and (max-width: 765px) {
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        width: 100%;
+    }
+    main .goals #goal-items .goal-date {
+        color: #333;
+        font-size: 11px;
+        position: relative;
+        left: -20%;
+        top: 25%;
+    }
+    span.material-symbols-outlined.bin2 {
+        color: #181a1e;
+        position: relative;
+        top: 37%;
+        left: -4%;
+    }
 
+    .card {
+        width: 90%;
+        max-width: 400px;
+        margin: 1rem 0;
+        height: auto;
+    }
+
+    .balance {
+        width: 90%;
+        max-width: 400px;
+        margin: 1rem 0;
+        height: auto;
+    }
+
+    .share {
+        background-color: #a5ea69;
+        color: #fff;
+        border-radius: 20px;
+        padding: 1rem;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
+        margin: 1rem 0;
+        height: auto;
+    }
+
+
+
+    main .all-finDtls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 213%;
+        max-width: 559px;
+        margin: 1rem 0;
+    }
+} */
+
+@media screen and (min-width:920px) and (max-width:960px){
+    .container{
+        width: 94%;
+    }
+    aside .sidebar{
+        height: 39rem;
+    }
+    main .all-finDtls {
+        grid-template-columns: 1fr;
+    }  
+
+    main .balance{
+        height: 90%;
+    }
+    main .share{
+        width: 100%;
+    }
+
+    main .share i{
+        position: relative;
+        top: 5%;
+    }
+
+
+.right-section{
+    width: 19rem;
+    height: 40rem;
+}
+.right-section h1{
+    font-size: 32px;
+}
+main .expense-tracker {
+    width: 30rem;
+    position: absolute;
+    left: 16px;
+}
+
+main .goals {
+    height: 29vh;
+    top: 616px;
+    width: 32rem;
+    position: absolute;
+    right: 3px;
+}
+
+}
+
+@media screen and (min-width:765px) and (max-width:920px){
+ .container{
+    width: 92%;
+ }  
+ 
+ aside .sidebar{
+    height: 39rem;
+}
+
+ main .all-finDtls{
+    grid-template-columns: 1fr;
+ }
+
+ main .card,.balance{
+    width: 42vw;
+ }
+ 
+ main .card .card-header img{
+    position: relative;
+    left: 175px;
+}
+ 
+ main .balance{
+    height: 90%;
+ }
+
+ main .share{
+    width: 42vw;
+ }
+
+ main .share i{
+    position: relative;
+    top: 5%;   
+ }
+
+ .right-section{
+    width: 20vw;
+    height: 95vh;
+ }
+
+ .nav{
+    position: relative;
+    left: -5vw;
+ }
+
+ .profile .sub-menu-div {
+    position: relative;
+    top: 7% !important;
+    left: -37vw;
+ }
+
+ main .expense-tracker {
+    height: 30vh;
+    width: 47vw;
+    position: absolute;
+    left: 16px;
+}
+
+main .goals {
+    height: 30vh;
+    top: 616px;
+    width: 47vw;
+    position: absolute;
+    right: -1px;
+}
+}
+
+@media screen and (max-width:360px) {
+
+    .container{
+        width: 80%;
+    }
+
+aside{
+    height: 10vh;
+}
+span.material-symbols-outlined.menu {
+    position: relative;
+    left: 131px;
+}
+
+aside .toggle h2{
+    font-weight: 700;
+}
+    aside .toggle .close {
+        display: block; /* Show the close button on mobile */
+    }
+
+    aside .sidebar {
+        position: fixed; /* Fix the sidebar position */
+        top: 0;
+        left: -100%; /* Hide the sidebar initially */
+        width: 22vw; /* Set the sidebar width */
+        height: 39rem; /* Full height */
+        transition: left 0.3s ease; /* Smooth transition for opening/closing */
+        z-index: 1000; /* Ensure the sidebar is on top */
+    }
+
+    aside .sidebar.open {
+        left: 0;
+        width: 38vw;
+    }
+    main .all-finDtls {
+        grid-template-columns: 1fr;
+        position: relative;
+        left: -234px;
+    }
+    main .card{
+        width: 314px;
+     }
+     
+     main .card .card-header img{
+        position: relative;
+        left: 175px;
+    }
+     
+     main .balance{
+        height: 90%;
+     }
+    
+    main .share{
+        width: 314px; 
+    }
+
+     main .share i{
+        position: relative;
+        top: 5%;   
+     }
+    
+     main .expense-tracker {
+        position: relative;
+        width: 98vw;
+        left: -67vw;
+        z-index: 4;
+    }
+
+    main .goals{
+        position: relative;
+        width: 98vw;
+        left: -67vw; 
+        z-index: 4;   
+    }
+
+    .right-section {
+        width: 92vw;
+        height: 51vh;
+        position: relative;
+        top: -19%;
+        left: -19%;
+    }
+
+     .nav {
+        position: relative;
+        left: -133vw;
+    }
+
+}
