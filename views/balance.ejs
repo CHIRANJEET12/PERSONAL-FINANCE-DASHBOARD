@@ -76,10 +76,23 @@ a:hover {
 <body>
     <form class="form-balance" action="/balance" method="POST">
         <label for="balance" class="form-label">Deposit Balance</label>
-        <input type="password" class="form-control" id="balance" name="balance" aria-describedby="emailHelp" required autofocus>
+      <input type="text" class="form-control" id="balance" name="balance" aria-describedby="balanceHelp" required autofocus>
+  <small id="balanceError" class="form-text text-danger" style="display: none;">Please enter only numbers.</small>
         <button type="submit" class="btn btn-primary depositblnc">Record the balance</button>
         <a href="/" class="dtls">Already Deposited?</a>
       </form>
-    
+    <script>
+  document.getElementById('balance').addEventListener('input', function (e) {
+    const value = e.target.value;
+    const balanceError = document.getElementById('balanceError');
+
+    if (!/^\d*$/.test(value)) {
+      balanceError.style.display = 'block';
+      e.target.value = value.replace(/[^\d]/g, ''); // Remove any non-numeric characters
+    } else {
+      balanceError.style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>
