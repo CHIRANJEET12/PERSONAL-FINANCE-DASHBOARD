@@ -186,7 +186,7 @@ function generateRandomPin() {
 
 
 
-router.post("/entre", async (req, res) => {
+router.post("/entre",authenticateToken, async (req, res) => {
     const { pin } = req.body;
     
     try {
